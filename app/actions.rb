@@ -10,7 +10,6 @@ post "/user/new" do
 end
 
 get "/story" do
-  slim :, :layout => :layout
 end
 
 post "/story/new" do
