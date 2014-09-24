@@ -1,3 +1,4 @@
 get "/" do
-  slim :index
+  slim :index, :layout => :layout
 end
+
