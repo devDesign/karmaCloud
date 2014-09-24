@@ -1,7 +1,6 @@
 require 'rubygems'
 require 'bundler/setup'
 require 'slim'
-require 'pg'
 
 require 'active_support/all'
 
@@ -9,6 +8,7 @@ require 'active_support/all'
 require 'sinatra'
 require 'sinatra/activerecord'
 
+require 'pg'
 require 'pry'
 
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))

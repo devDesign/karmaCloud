@@ -1,6 +1,6 @@
 class AddStory < ActiveRecord::Migration
   def change
-    create_table :story do |t|
+    create_table :stories do |t|
       t.string     :title
       t.string     :content
       t.string     :lat

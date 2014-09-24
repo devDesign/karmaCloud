@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -15,7 +16,7 @@ ActiveRecord::Schema.define(version: 20140924224040) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "story", force: true do |t|
+  create_table "stories", force: true do |t|
     t.string  "title"
     t.string  "content"
     t.string  "lat"
@@ -25,7 +26,7 @@ ActiveRecord::Schema.define(version: 20140924224040) do
     t.integer "user_id"
   end
 
-  create_table "user", force: true do |t|
+  create_table "users", force: true do |t|
     t.string  "user_name"
     t.string  "password"
     t.string  "name"
