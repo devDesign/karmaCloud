@@ -10,11 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321144528) do
+ActiveRecord::Schema.define(version: 20140924221430) do
 
-  create_table "users", force: true do |t|
-    t.string "name"
-    t.string "email"
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "user", force: true do |t|
+    t.string  "user_name"
+    t.string  "password"
+    t.string  "name"
+    t.string  "email"
+    t.string  "lat"
+    t.string  "lon"
+    t.string  "avatar_url"
+    t.integer "karma_total"
+    t.integer "karma_bank"
   end
 
 end
