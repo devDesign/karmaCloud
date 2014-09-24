@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+      html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDh7gQpc44MXI-1hxqphb4VJpg92xtjgig">
+    </script>
+  
+  </head>
+  <body>
+
+      <div id="test">This is a Test and should exist</div>
+      <div id="map-canvas"></div>
+
+      <script type="text/javascript">
+        var element = document.getElementById("test");
+        getLocation();
+
+        function getLocation() {
+          if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition, showError);
+          } else {
+            element.innerHTML = "GeoLocation is not supported by the Browser";
+          }
+        }
+
+        function showPosition(position) {
+          lat = position.coords.latitude;
+          lng = position.coords.longitude;
+
+          console.log("initializing");
+          initialize(lat,lng);
+        }
+
+        function showError(error) {
+          switch(error.code) {
+          case error.PERMISSION_DENIED:
+            element.innerHTML = "User denied the request for Geolocation."
+            break;
+          case error.POSITION_UNAVAILABLE:
+            element.innerHTML = "Location information is unavailable."
+            break;
+          case error.TIMEOUT:
+            element.innerHTML = "The request to get user location timed out."
+            break;
+          case error.UNKNOWN_ERROR:
+            element.innerHTML = "An unknown error occurred."
+            break;
+         }
+        }
+
+        function initialize(lat,lng) {
+          var mapOptions = {
+            center: { lat: lat, lng: lng},
+            zoom: 8
+          };
+          
+          var map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+        }
+
+      </script>
+
+  </body>
+</html>
+
