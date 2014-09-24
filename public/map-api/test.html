@@ -30,7 +30,6 @@
           lat = position.coords.latitude;
           lng = position.coords.longitude;
 
-          console.log("initializing");
           initialize(lat,lng);
         }
 
@@ -54,7 +53,7 @@
         function initialize(lat,lng) {
           var mapOptions = {
             center: { lat: lat, lng: lng},
-            zoom: 8
+            zoom: 18
           };
           
           var map = new google.maps.Map(document.getElementById('map-canvas'),
