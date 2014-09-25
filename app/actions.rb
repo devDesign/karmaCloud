@@ -2,20 +2,35 @@ get "/" do
   slim :index, :layout => :layout
 end
 
-get "/user" do
+post "/user_session/new" do
+  #login user
+end
+
+delete "/user_session" do
+  #logout user
+end
+
+get "/user/:id" do
+  #/user/show
   slim :user, :layout => :layout
 end
 
-post "/user/new" do
+get "/user/new" do
+  #/user/new
 end
 
-get "/story" do
+post "/user" do
+  #create user
 end
 
-post "/story/new" do
+get "/story/:id" do
+  #/story/show
 end
 
-get "/" do
-  slim :index, :layout => :layout
+get "/story/new" do
+  #/story/new
 end
 
+post "/story" do
+  #create story
+end
