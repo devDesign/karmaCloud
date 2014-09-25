@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
             uniqueness: true, 
             format: { with: /^[\w|_]{3,}$/, message: "only letters, numbers and underscores" }
   validates :email, 
+            uniqueness: true,
             format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }, 
             allow_blank: true
   validates :avatar_url, 
