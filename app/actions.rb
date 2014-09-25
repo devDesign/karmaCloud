@@ -68,7 +68,7 @@ get "/" do
     }
   ]
   
-
+  @stories = Story.all
   erb :index, :layout => :'../layout'
 
 end
@@ -104,6 +104,7 @@ post "/user" do
   @user = User.new(
     user_name: params[:user_name],
     password:  encrypt(params[:password]),
+    name:      params[:name],
     email:     params[:email]
     )
   if @user.save

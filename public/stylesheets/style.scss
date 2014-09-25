@@ -90,3 +90,38 @@ body{
   height: 70vh;
 
 }
+
+/* User Profile page */
+.user-profile-left {
+  border-right: 1px solid #ccc;
+  position: fixed;
+  height: 100%;
+  
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin: 10px 0;
+    }
+  }
+  .inner-bar {
+    width: 60%;
+    margin: 30px auto;
+    min-width: 210px;
+
+    div {
+      margin: 40px 0;
+    }
+  }
+  .user-avatar {
+    border-radius: 100px;
+  }
+}
+
+.user-profile-right {
+  margin-left: 25%;
+  float: left;
+  padding: 25px 50px;
+}
+

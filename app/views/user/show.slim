@@ -1,0 +1,25 @@
+link href="/stylesheets/style.css"
+.col-md-3.user-profile-left
+  div.inner-bar
+    img.user-avatar src="http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(@user.email)}?s=200" alt=""/
+    div.user-info
+      div 
+        h4 
+          | 
+            #{@user.user_name}  <br/><span class="small">Username</span>
+      div 
+        h4 
+          | 
+            #{@user.name}  <br/><span class="small">Name</span>
+      div 
+        h4 
+          | 
+            #{@user.karma_total}  <br/><span class="small">Karma</span>
+    div.user-actions.btn-group-vertical
+      button.btn.btn-default.btn-lg Create Story
+      button.btn.btn-default.btn-lg View Latest Stories
+      button.btn.btn-default.btn-lg Give Karma
+
+.user-profile-right
+  .event
+    h2 Event Example!
