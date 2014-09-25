@@ -6,7 +6,6 @@ gem 'activesupport'
 gem 'slim'
 gem 'pg'
 gem 'sass'
-gem 'geocoder'
 gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'sinatra-activerecord'
@@ -14,6 +13,9 @@ gem 'sinatra-activerecord'
 gem 'puma'
 gem 'tux'
 
+gem 'faker'
+gem 'factory_girl'
+gem 'geocoder'
 gem 'gon-sinatra'
 
 group :development, :test do
