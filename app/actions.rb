@@ -123,12 +123,13 @@ get "/story/:id" do
 end
 
 post "/story" do
-
+  @location_query
   @user = User.find(session[:user_id])
   @story = @user.stories.new(
-    title:   params[:title],
-    content: params[:content],
-    mood:    params[:mood]
+    title:    params[:title],
+    content:  params[:content],
+    mood:     params[:mood],
+    location: params[:location]
     )
   if @story.save
     redirect "/story/#{@story.id}"
