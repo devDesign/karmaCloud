@@ -38,6 +38,8 @@ function showError(error) {
  }
 }
 
+
+
 function create_info_box(story) {
   return new google.maps.InfoWindow({ 
     content: story.content, 
@@ -53,6 +55,7 @@ function create_markers(map){
     var marker = new google.maps.Marker({
       position: {lat: element.lat, lng: element.lon},
       map: map,
+      animation: google.maps.Animation.DROP,
       title:"Hello World!"  
     });
 
@@ -69,7 +72,7 @@ function initialize() {
 
   var mapOptions = {
     center: map_position,
-    zoom: 18
+    zoom: 13
   };
   
   var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
