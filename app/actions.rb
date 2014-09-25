@@ -10,7 +10,7 @@ helpers do
 end
 
 get "/" do
-  slim :index, :layout => :layout
+  slim :index, layout: :layout
 end
 
 post "/user_session/new" do
@@ -20,22 +20,23 @@ post "/user_session/new" do
     redirect '/'
   else
     @login_errors = true
-    slim :'/'
+    slim :'/', layout: :layout
   end
 end
 
 delete "/user_session" do
-  #logout user
+  session[:user_id] = nil
+  redirect '/'
 end
 
 get "/user/new" do
   @user = User.new
-  slim :'/user/new', :layout => :layout
+  slim :'/user/new', layout: :layout
 end
 
 get "/user/:id" do
   #/user/show
-  slim :user, :layout => :layout
+  slim :user, layout: :layout
 end
 
 post "/user" do
@@ -48,18 +49,29 @@ post "/user" do
     session[:user_id] = @user.id
     redirect '/'
   else
-    slim :'/user/new', :layout => :layout
+    slim :'/user/new', layout: :layout
   end
 end
 
 get "/story/new" do
-  #/story/new
+  @story = Story.new
+  slim :'story/new', layout: :layout
 end
 
 get "/story/:id" do
-  #/story/show
+  slim :'story/show', layout: :layout
 end
 
 post "/story" do
-  #create story
+  @user = User.find(session[:user_id])
+  @story = @user.stories.new(
+    title:   params[:title],
+    content: params[:content],
+    mood:    params[:mood]
+    )
+  if @story.save
+    redirect "/story/#{@story.id}"
+  else
+    slim :'/story/new', layout: :layout
+  end
 end

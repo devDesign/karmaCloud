@@ -7,12 +7,11 @@
         strong Error: #{message}
         
 form method="post" action="/story"
-  label Username
-  input type="text" name="user_name" value="#{@story.user_name}"
-  label Password
-  input type="password" name="password" value=""
-  label Name (optional)
-  input type="text" name="name" value="#{@story.name}"
-  label Email (optional)
-  input type="text" name="email" value="#{@story.email}"
+  label Title
+  input type="text" name="title" value="#{@story.title}"
+  label Content
+  textarea name="content" value="#{@story.content}"
+  label Mood
+  input type="radio" name="mood" value="green"
+  input type="radio" name="mood" value="red"
   input type="submit" value="Submit"
