@@ -1,0 +1,18 @@
+-if @story.errors.any?
+    -@story.errors.full_messages.each do |message|
+      div class="alert alert-danger alert-dismissable" role="alert"
+        button type="button" class="close" data-dismissable="alert"
+          span aria-hidden="true" &times;
+          span class="sr-only" Close
+        strong Error: #{message}
+        
+form method="post" action="/story"
+  label Username
+  input type="text" name="user_name" value="#{@story.user_name}"
+  label Password
+  input type="password" name="password" value=""
+  label Name (optional)
+  input type="text" name="name" value="#{@story.name}"
+  label Email (optional)
+  input type="text" name="email" value="#{@story.email}"
+  input type="submit" value="Submit"

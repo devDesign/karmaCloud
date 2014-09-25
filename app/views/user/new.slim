@@ -1,7 +1,11 @@
 -if @user.errors.any?
-  ul
     -@user.errors.full_messages.each do |message|
-      li -message
+      div class="alert alert-danger alert-dismissable" role="alert"
+        button type="button" class="close" data-dismissable="alert"
+          span aria-hidden="true" &times;
+          span class="sr-only" Close
+        strong Error: #{message}
+        
 form method="post" action="/user"
   label Username
   input type="text" name="user_name" value="#{@user.user_name}"

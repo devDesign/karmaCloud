@@ -46,18 +46,18 @@ post "/user" do
     )
   if @user.save
     session[:user_id] = @user.id
-    redired '/'
+    redirect '/'
   else
     slim :'/user/new', :layout => :layout
   end
 end
 
-get "/story/:id" do
-  #/story/show
-end
-
 get "/story/new" do
   #/story/new
+end
+
+get "/story/:id" do
+  #/story/show
 end
 
 post "/story" do
