@@ -10,6 +10,7 @@ require 'sinatra/activerecord'
 
 require 'pg'
 require 'pry'
+require 'digest/sha1'
 
 
 
