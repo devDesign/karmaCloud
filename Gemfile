@@ -6,13 +6,15 @@ gem 'activesupport'
 gem 'slim'
 gem 'pg'
 gem 'sass'
-
+gem 'geocoder'
 gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'sinatra-activerecord'
 
 gem 'puma'
 gem 'tux'
+
+gem 'gon-sinatra'
 
 group :development, :test do
   gem 'pry'

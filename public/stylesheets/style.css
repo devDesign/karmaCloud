@@ -1,18 +1,49 @@
-#title {
+.horizontal_panel {
+  padding: 10px;
+  background-color: #343434;
+  color: #f3f3f3;
   text-align: center; }
+
+.container {
+  width: 80%;
+  padding-top: 24px; }
+
+#title {
+  text-align: center;
+  float: left; }
 
 .top_stories {
   position: relative;
-  min-height: 100vh; }
+  min-height: 70vh;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff), to(#d2d2d2));
+  background: -webkit-linear-gradient(top, #d2d2d2, #ffffff);
+  background: -moz-linear-gradient(top, #d2d2d2, #ffffff);
+  background: -ms-linear-gradient(top, #d2d2d2, #ffffff);
+  background: -o-linear-gradient(top, #d2d2d2, #ffffff); }
+
+.top_story {
+  position: relative;
+  display: inline-block;
+  width: 80%; }
+  .top_story h2 {
+    text-align: left; }
 
 .login_forms {
-  position: absolute;
-  top: 10px;
-  right: 20px; }
-#map-canvas{
-  margin: 0px;
-  padding:0px;
-}
+  position: relative;
+  bottom: 4px;
+  text-align: right; }
+
+.map_bar {
+  position: relative;
+  height: 70px;
+  width: 100%;
+  border-top: 1px;
+  border-bottom: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-style: solid;
+  border-color: #e0e0e0;
+  background-color: #f0f0f0; }
 
 .map_canvas {
   width: 100%;
@@ -25,20 +56,23 @@
   text-align: center;
   vertical-align: middle;
   position: relative;
-  height: 25vh;
-  background-color: #dddddd; }
+  padding-top: 24px; }
   .mission_statement h2 {
     margin: 0px; }
 
 .story {
   position: relative;
-  float: left;
-  width: 45%;
+  width: 100%;
   height: 150px;
-  padding: 5px;
-  margin: 10px;
   border-style: solid;
-  border-color: #bbbbbb;
-  background-color: #eeeeee; }
+  border-size: 1px;
+  border-color: #b7b7b7;
+  background-color: #f7f7f7; }
+
+.story_feed {
+  width: 80%;
+  margin: auto;
+  overflow: auto;
+  height: 70vh; }
 
 /*# sourceMappingURL=style.css.map */
