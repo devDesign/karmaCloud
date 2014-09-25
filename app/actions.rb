@@ -68,6 +68,7 @@ before do
 end
 
 get "/" do
+  @user = User.new
   slim :index, layout: :layout
 end
 
@@ -75,10 +76,10 @@ post "/user_session/new" do
   @user = User.where(user_name: params[:user_name]).first || User.new
   if login_valid?
     session[:user_id] = @user.id
-    redirect 'request.referer'
+    redirect '/'
   else
     @login_errors = true
-    slim :'/', layout: :layout
+    slim :index, layout: :layout
   end
 end
 

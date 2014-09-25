@@ -1,12 +1,15 @@
 #title
   h1 Karma Cloud
 .login_forms
-  form method='post' action='user_session/new' class='form-group'
-    lable username:
-    input name='login' class='login-input'
-    lable password:
-    input type='password' name='password' class='password-input'
-    input type='submit'
+  -if session[:user_id]
+    button class="logout btn btn-primary" logout
+  -else
+    form method='post' action='user_session/new' class='form-group'
+      lable username:
+      input name='login' class='login-input' value='#{@user.user_name}'
+      lable password:
+      input type='password' name='password' class='password-input'
+      input type='submit'
 .top_stories
   h2 Todays Top Stories
   .container
