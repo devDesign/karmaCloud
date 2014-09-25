@@ -1,4 +1,5 @@
-alert(gon.test);
+console.log(gon.stories);
+
 
 var map_position = {};
 
@@ -37,7 +38,32 @@ function showError(error) {
  }
 }
 
+function create_info_box(story) {
+  return new google.maps.InfoWindow({ content: story.content, maxWidth: 100 });
+}
+
+function create_markers(map){
+
+  gon.stories.forEach(function(element, index, array){
+
+    console.log(element);
+    var marker = new google.maps.Marker({
+      position: {lat: element.lat, lng: element.lon},
+      map: map,
+      title:"Hello World!"  
+    });
+
+    var info_box = create_info_box(element);
+    google.maps.event.addListener(marker, 'click', function() {
+      info_box.open(map,marker);
+    });
+
+  });
+
+}
+
 function initialize() {
+
   var mapOptions = {
     center: map_position,
     zoom: 18
@@ -45,9 +71,6 @@ function initialize() {
   
   var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-  var marker = new google.maps.Marker({
-    position: map_position,
-    map: map,
-    title:"Hello World!"
-  });
+  create_markers(map);
 }
+
