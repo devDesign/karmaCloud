@@ -39,7 +39,10 @@ function showError(error) {
 }
 
 function create_info_box(story) {
-  return new google.maps.InfoWindow({ content: story.content, maxWidth: 100 });
+  return new google.maps.InfoWindow({ 
+    content: story.content, 
+    maxWidth: 300 
+  });
 }
 
 function create_markers(map){
