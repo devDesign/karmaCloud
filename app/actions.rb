@@ -76,7 +76,7 @@ get "/" do
 
 end
 
-post "/user_session/new" do
+post "/user_session" do
   @user = User.where(user_name: params[:user_name]).first || User.new
   if login_valid?
     session[:user_id] = @user.id
@@ -100,7 +100,7 @@ end
 
 get "/user/:id" do
   @user = User.find(params[:id])
-  slim :'user/show', layout: :layout
+  erb :'user/show', :layout => :'../layout'
 end
 
 post "/user" do

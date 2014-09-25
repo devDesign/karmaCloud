@@ -10,13 +10,13 @@
     <link href="/stylesheets/style.css" rel="stylesheet" type="text/css" />
     <link href="/stylesheets/jquery-ui.css" rel="stylesheet" type="text/css" />
     
-    <script href="javascript/bootstrap.js"></script>
+    <script href="/javascript/bootstrap.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDh7gQpc44MXI-1hxqphb4VJpg92xtjgig" type="text/javascript"></script>
-    <script src="javascript/map.js" type="text/javascript"></script>
+    <script src="/javascript/map.js" type="text/javascript"></script>
     
-    <script src="javascript/jquery.js"></script>
-    <script src="javascript/application.js"></script>
-    <script src="javascript/jquery-ui.js"></script>    
+    <script src="/javascript/jquery.js"></script>
+    <script src="/javascript/jquery-ui.js"></script>  
+    <script src="/javascript/application.js"></script>  
 
     <title>Karma Cloud</title>
   </head>
@@ -59,35 +59,7 @@
         </form>
       </div>
     </div>
-    <script>
-      $( "#login" ).dialog({
-        autoOpen: false,
-        width: 400,
-        modal: true,
-        resizable: false,
-        title: "Login to Karma Cloud" 
-      });
-
-// Link to open the dialog
-$( "#login-link" ).click(function( event ) {
-  $( "#login" ).dialog( "open" );
-  event.preventDefault();
-});
-
-  $( "#create_user" ).dialog({
-  autoOpen: false,
-  width: 400,
-  modal: true,
-  resizable: false,
-  title: "Welcome to Karma Cloud" 
-});
-
-// Link to open the dialog
-$( "#create_user-link" ).click(function( event ) {
-  $( "#create_user" ).dialog( "open" );
-  event.preventDefault();
-});
-</script>
+    
 
   <%= yield %>
   </body>
