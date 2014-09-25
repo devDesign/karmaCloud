@@ -3,5 +3,5 @@ class Story < ActiveRecord::Base
   has_many   :comments
 
   validates :title, :content, presence: true
-  validates :mood, format: { with: /^red|green$/, message: "must be 'red' or 'green'"}
+  validates :mood, format: { with: /\Ared|green\Z/, message: "must be 'red' or 'green'"}
 end

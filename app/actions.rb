@@ -1,13 +1,36 @@
+helpers do
+
+  def encrypt(input)
+    Digest::SHA1.hexdigest(input) unless input.blank?
+  end
+
+  def login_valid?
+    return true unless @user.password != encrypt(params[:password])
+  end
+end
+
 get "/" do
   slim :index, :layout => :layout
 end
 
 post "/user_session/new" do
-  #login user
+  @user = User.where(email: params[:email]).first || User.new
+  if login_valid?
+    session[:user_id] = @user.id
+    redirect '/'
+  else
+    @login_errors = true
+    slim :'/'
+  end
 end
 
 delete "/user_session" do
   #logout user
+end
+
+get "/user/new" do
+  @user = User.new
+  slim :'/user/new', :layout => :layout
 end
 
 get "/user/:id" do
@@ -15,12 +38,13 @@ get "/user/:id" do
   slim :user, :layout => :layout
 end
 
-get "/user/new" do
-  #/user/new
-end
-
 post "/user" do
-  #create user
+  @user = User.new(
+    user_name: params[:user_name],
+    password:  encrypt(params[:password]),
+    email:     params[:email]
+    )
+  slim :'/user/new', :layout => :layout
 end
 
 get "/story/:id" do

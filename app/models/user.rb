@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   validates :user_name, :password, presence: true
   validates :user_name, 
             uniqueness: true, 
-            format: { with: /^[\w|_]{3,}$/, message: "only letters, numbers and underscores" }
+            format: { with: /\A[\w|_]{3,}\Z/, message: "only letters, numbers and underscores" }
   validates :email, 
             uniqueness: true,
             format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }, 

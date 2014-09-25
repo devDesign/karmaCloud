@@ -1,0 +1,10 @@
+form method="post" action="/user"
+  label Username
+  input type="text" name="user_name" value="#{@user.user_name}"
+  label Password
+  input type="password" name="password" value=""
+  label Name (optional)
+  input type="text" name="name" value="#{@user.name}"
+  label Email (optional)
+  input type="text" name="email" value="#{@user.email}"
+  input type="submit" value="Submit"

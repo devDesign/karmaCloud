@@ -10,6 +10,7 @@ require 'sinatra/activerecord'
 
 require 'pg'
 require 'pry'
+require 'digest/sha1'
 
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
 APP_NAME = APP_ROOT.basename.to_s
