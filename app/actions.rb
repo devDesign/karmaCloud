@@ -1,15 +1,12 @@
 
 get "/map" do 
-  @test = "BAMF!!!!!!!!!!!!"
+  
 
   gon.test = @test
   
   erb :'map_test'
 end
-
-  slim :index, :layout => :layout
-end
-
+  
 get "/user" do
   slim :user, :layout => :layout
 end
