@@ -21,60 +21,52 @@
     <title>Karma Cloud</title>
   </head>
   <body>
-  <div>
-  <div class="container">
-  <div id="title">
-  <h1>
-    Karma Cloud
-  </h1>
-    <div id='menu'>
-    <ul>
-    <li>create story</li>
-    <li>search stories</li>
-    <li>profiles</li>
-    <li><a href='#' id='login-link'>login</a></li>
-    <li><a href='#' id='create_user-link'>signup</a></li>
-    </ul>
-
+    <div class="container">
+      <div id="title">
+        <h1>
+          Karma Cloud
+        </h1>
+        <div id='menu'>
+          <ul>
+            <li>create story</li>
+            <li>search stories</li>
+            <li>profiles</li>
+            <li><a href='#' id='login-link'>login</a></li>
+            <li><a href='#' id='create_user-link'>signup</a></li>
+          </ul>
+        </div>
+      </div>
+    <div id='login'>
+      <div class="login_forms">
+        <form method="post" action="/user_session">
+          <lable>username:</lable><input class="login-input" name="user_name" /><br><lable>password:</lable><input class="password-input" type="password" name="password" /><br><input type="submit" />
+        </form>
     </div>
-  </div>
-
-  <div class="login_forms">
-    <% if session[:user_id] %>
-    <form method="post" action="/user_session">
-      <input name="_method" type="hidden" value="delete" />
-      <button type="submit" class="logout btn btn-primary">logout</button>
-    </form> 
-    <% else %>
-    <form action="/user_session/new" class="form-group" method="post">
-      <lable>username:</lable><input class="login-input" name="user_name" /><br><lable>password:</lable><input class="password-input" type="password" name="password" /><br><input type="submit" />
-    </form>
-    <% end %>
-  </div>
-
-  <div id="create_user">
-    <div class="create_forms">
-      <form method="post" action="/user">
-        <label>user name:</label>
-        <input type="text" name="user_name" value="<%= @user.user_name %>" />
-        <label> Password</label>
-        <input type="password" name="password" value="" />
-        <label> Name (optional)</label>
-        <input type="text" name="name" value="<%=@user.name%>" />
-        <label> Email (optional)</label>
-        <input type="text" name="email" value="<%=@user.email%>" />
-        <input type="submit" value="Submit" />
-      </form>
     </div>
-  </div>
-<script>
-  $( "#login" ).dialog({
-  autoOpen: false,
-  width: 400,
-  modal: true,
-  resizable: false,
-  title: "Login to Karma Cloud" 
-});
+    </div>
+    <div id="create_user">
+      <div class="create_forms">
+        <form method="post" action="/user">
+          <label>user name:</label>
+          <input type="text" name="user_name" value="<%= @user.user_name %>" />
+          <label> Password</label>
+          <input type="password" name="password" value="" />
+          <label> Name (optional)</label>
+          <input type="text" name="name" value="<%=@user.name%>" />
+          <label> Email (optional)</label>
+          <input type="text" name="email" value="<%=@user.email%>" />
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+    </div>
+    <script>
+      $( "#login" ).dialog({
+        autoOpen: false,
+        width: 400,
+        modal: true,
+        resizable: false,
+        title: "Login to Karma Cloud" 
+      });
 
 // Link to open the dialog
 $( "#login-link" ).click(function( event ) {
