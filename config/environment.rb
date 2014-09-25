@@ -8,6 +8,7 @@ require 'active_support/all'
 require 'sinatra'
 require 'sinatra/activerecord'
 
+require 'geocoder'
 require 'faker'
 require 'factory_girl'
 require 'gon-sinatra'
