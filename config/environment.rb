@@ -1,13 +1,14 @@
 require 'rubygems'
 require 'bundler/setup'
 require 'slim'
-require 'pg'
 
 require 'active_support/all'
 
 # Load Sinatra Framework (with AR)
 require 'sinatra'
 require 'sinatra/activerecord'
+
+require 'pg'
 require 'pry'
 
 
