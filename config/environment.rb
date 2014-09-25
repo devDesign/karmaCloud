@@ -8,6 +8,8 @@ require 'active_support/all'
 require 'sinatra'
 require 'sinatra/activerecord'
 
+require 'faker'
+require 'factory_girl'
 require 'gon-sinatra'
 require 'pg'
 require 'pry'

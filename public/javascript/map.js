@@ -53,7 +53,7 @@ function create_markers(map){
 
     console.log(element);
     var marker = new google.maps.Marker({
-      position: {lat: element.lat, lng: element.lon},
+      position: {lat: element.latitude, lng: element.longitude},
       map: map,
       animation: google.maps.Animation.DROP,
       title:"Hello World!"  
@@ -72,7 +72,10 @@ function initialize() {
 
   var mapOptions = {
     center: map_position,
-    zoom: 13
+    zoom: 13, draggable: true, 
+    zoomControl: true, 
+    scrollwheel: false, 
+    disableDoubleClickZoom: false
   };
   
   var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
