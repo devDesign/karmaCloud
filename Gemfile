@@ -6,7 +6,7 @@ gem 'activesupport'
 gem 'slim'
 gem 'pg'
 gem 'sass'
-
+gem 'geocoder'
 gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'sinatra-activerecord'

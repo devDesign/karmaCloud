@@ -5,6 +5,24 @@ get "/map" do
   # Request to server for stories published in last 24 hours
   # Pass array of objects via gon.variable = @variable
 
+  
+  
+  erb :'map_test'
+end
+
+helpers do
+
+  def encrypt(input)
+    Digest::SHA1.hexdigest(input) unless input.blank?
+  end
+
+  def login_valid?
+    return true unless @user.password != encrypt(params[:password])
+  end
+end
+
+get "/" do
+
   gon.stories = [
     {
       lat: 49.281956099999995,
@@ -49,27 +67,9 @@ get "/map" do
     }
   ]
   
-  erb :'map_test'
-end
 
-helpers do
+  erb :index, :layout => :'../layout'
 
-  def encrypt(input)
-    Digest::SHA1.hexdigest(input) unless input.blank?
-  end
-
-  def login_valid?
-    return true unless @user.password != encrypt(params[:password])
-  end
-end
-
-before do
-
-end
-
-get "/" do
-  @user = User.new
-  slim :index, layout: :layout
 end
 
 post "/user_session/new" do
@@ -137,4 +137,5 @@ post "/story" do
     slim :'/story/new', layout: :layout
   end
 end
+
 

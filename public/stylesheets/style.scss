@@ -1,17 +1,62 @@
-$storyBackground: #eeeeee;
+$storyBackground: #f7f7f7;
+$barColor:#343434;
+$white:#f3f3f3;
+$backgroundLight:#ffffff;
+$backgroundDark:#d2d2d2;
+
+body{
+  
+}
+.horizontal_panel{
+  padding: 10px;
+  background-color: $barColor;
+  color:$white;
+  text-align: center;
+}
+.container{
+  width:80%;
+  padding-top: 24px;
+}
 
 #title{
   text-align: center;
+  float:left;
 }
 .top_stories{
   position: relative;
-  min-height: 100vh;
+  min-height: 70vh;
+ background: -webkit-gradient(linear, 0% 0%, 0% 100%, from($backgroundLight), to($backgroundDark));
+  background: -webkit-linear-gradient(top, $backgroundDark, $backgroundLight);
+  background: -moz-linear-gradient(top, $backgroundDark, $backgroundLight);
+  background: -ms-linear-gradient(top, $backgroundDark, $backgroundLight);
+  background: -o-linear-gradient(top, $backgroundDark, $backgroundLight);
+}
+.top_story{
+  position: relative;
+  display: inline-block;
+  width:80%;
+  h2{
+    text-align: left;
+  }
 }
 
+
 .login_forms{
-  position: absolute;
-  top: 10px;
-  right:20px;
+  position: relative;
+  bottom: 4px;
+  text-align: right;
+}
+.map_bar{
+  position: relative;
+  height: 70px;
+  width: 100%;
+  border-top: 1px;
+  border-bottom: 0px;
+  border-left: 0px;
+  border-right:0px;
+  border-style: solid;
+  border-color:#e0e0e0;
+  background-color: #f0f0f0;
 }
 .map_canvas{
   width:100%;
@@ -24,21 +69,24 @@ $storyBackground: #eeeeee;
   text-align: center;
   vertical-align:middle;
   position: relative;
-  height: 25vh;
-  background-color: #dddddd;
+  padding-top: 24px;
   h2{
     margin: 0px;
   }
 }
 .story{
   position:relative;
-  float: left;
-  width: 45%;
+  width: 100%;
   height: 150px;
-  padding: 5px;
-  margin: 10px;
   border-style: solid;
-  border-color: darken($storyBackground,20%);
+  border-size:1px;
+  border-color: darken($storyBackground,25%);
   background-color: $storyBackground;
 }
+.story_feed{
+  width:80%;
+  margin: auto;
+  overflow:auto;
+  height: 70vh;
 
+}
