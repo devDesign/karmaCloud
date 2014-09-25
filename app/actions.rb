@@ -77,16 +77,16 @@ post "/user_session/new" do
   @user = User.where(user_name: params[:user_name]).first || User.new
   if login_valid?
     session[:user_id] = @user.id
-    redirect '/'
+    redirect request.referer
   else
     @login_errors = true
-    redirect '/?login_errors=true'
+    redirect request.referer
   end
 end
 
 delete "/user_session" do
   session[:user_id] = nil
-  redirect '/'
+  redirect request.referer
 end
 
 get "/user/new" do

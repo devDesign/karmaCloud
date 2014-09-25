@@ -96,6 +96,10 @@ body{
   border-right: 1px solid #ccc;
   position: fixed;
   height: 100%;
+  background: -webkit-linear-gradient(top, #d2d2d2, #ffffff);
+  background: -moz-linear-gradient(top, #d2d2d2, #ffffff);
+  background: -ms-linear-gradient(top, #d2d2d2, #ffffff);
+  background: -o-linear-gradient(top, #d2d2d2, #ffffff);
   
   ul {
     list-style: none;
@@ -123,5 +127,17 @@ body{
   margin-left: 25%;
   float: left;
   padding: 25px 50px;
+
+  .event {
+    width: 90%;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 4px;
+
+    p {
+      color: #777;
+    }
+  }
 }
 

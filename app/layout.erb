@@ -24,7 +24,10 @@
   </div>
   <div class="login_forms">
   <% if session[:user_id] %>
-  <button class="logout btn btn-primary">logout</button>
+  <form method="post" action="/user_session">
+    <input name="_method" type="hidden" value="delete" />
+    <button type="submit" class="logout btn btn-primary">logout</button>
+  </form> 
   <% else %>
   <form action="/user_session/new" class="form-group" method="post">
     <lable>username:</lable><input class="login-input" name="user_name" /><br><lable>password:</lable><input class="password-input" type="password" name="password" /><br><input type="submit" />

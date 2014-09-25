@@ -20,6 +20,8 @@ link href="/stylesheets/style.css"
       button.btn.btn-default.btn-lg View Latest Stories
       button.btn.btn-default.btn-lg Give Karma
 
-.user-profile-right
-  .event
-    h2 Event Example!
+.col-md-9.user-profile-right
+  -@user.stories.each do |story|
+    .event
+      p #{@user.user_name} created a story:
+      h3 #{story.title}
