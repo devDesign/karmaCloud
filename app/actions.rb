@@ -9,6 +9,10 @@ helpers do
   end
 end
 
+before do
+
+end
+
 get "/" do
   slim :index, layout: :layout
 end
@@ -17,7 +21,7 @@ post "/user_session/new" do
   @user = User.where(email: params[:email]).first || User.new
   if login_valid?
     session[:user_id] = @user.id
-    redirect '/'
+    redirect 'request.referer'
   else
     @login_errors = true
     slim :'/', layout: :layout
@@ -35,8 +39,8 @@ get "/user/new" do
 end
 
 get "/user/:id" do
-  #/user/show
-  slim :user, layout: :layout
+  @user = User.find(params[:id])
+  slim :'user/show', layout: :layout
 end
 
 post "/user" do
