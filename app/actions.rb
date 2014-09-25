@@ -1,4 +1,6 @@
-
+get '/stylesheets/style.css' do
+  scss :styles
+end
 
 get "/map" do 
   
