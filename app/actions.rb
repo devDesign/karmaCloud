@@ -44,7 +44,12 @@ post "/user" do
     password:  encrypt(params[:password]),
     email:     params[:email]
     )
-  slim :'/user/new', :layout => :layout
+  if @user.save
+    session[:user_id] = @user.id
+    redired '/'
+  else
+    slim :'/user/new', :layout => :layout
+  end
 end
 
 get "/story/:id" do
