@@ -18,7 +18,7 @@ get "/" do
 end
 
 post "/user_session/new" do
-  @user = User.where(email: params[:email]).first || User.new
+  @user = User.where(user_name: params[:user_name]).first || User.new
   if login_valid?
     session[:user_id] = @user.id
     redirect 'request.referer'
@@ -57,7 +57,6 @@ post "/user" do
     slim :'/user/new', layout: :layout
   end
 end
-
 
 get "/story/new" do
   @story = Story.new
