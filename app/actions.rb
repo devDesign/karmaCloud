@@ -1,4 +1,6 @@
-
+get '/stylesheets/style.css' do
+  scss :styles
+end
 
 get "/map" do 
   
@@ -67,6 +69,7 @@ get "/" do
       posted_by: "some user"
     }
   ]
+  @user = User.new
   
 
   erb :index, :layout => :'../layout'
