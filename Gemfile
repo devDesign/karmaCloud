@@ -5,6 +5,7 @@ gem 'rake'
 gem 'activesupport'
 gem 'slim'
 gem 'pg'
+gem 'sass'
 
 gem 'sinatra'
 gem 'sinatra-contrib'
