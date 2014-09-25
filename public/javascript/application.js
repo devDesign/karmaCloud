@@ -1,13 +1,15 @@
 $(document).ready(function() {
-  
-  $('.logout').on('click',function() {
-    $.ajax({
-      type: 'DELETE',
-      url: '/user_session'
+  $(function() {
+    $( "#accordion" ).accordion({
+      collapsible: true
     });
   });
-
-
+  
+  $(function() {
+    $( "#top_5" ).accordion({
+      collapsible: true
+    });
+  });
 });
 
 
