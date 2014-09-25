@@ -80,7 +80,7 @@ post "/user_session/new" do
     redirect '/'
   else
     @login_errors = true
-    slim :index, layout: :layout
+    redirect '/?login_errors=true'
   end
 end
 
