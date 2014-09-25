@@ -4,6 +4,7 @@ source "https://rubygems.org"
 gem 'rake'
 gem 'activesupport'
 gem 'slim'
+gem 'pg'
 
 gem 'sinatra'
 gem 'sinatra-contrib'

@@ -9,7 +9,7 @@ require 'sinatra'
 require 'sinatra/activerecord'
 
 require 'gon-sinatra'
-
+require 'pg'
 require 'pry'
 
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
@@ -24,6 +24,7 @@ configure do
   set :session_secret, ENV['SESSION_KEY'] || 'lighthouselabssecret'
 
   set :views, File.join(Sinatra::Application.root, "app", "views")
+
 end
 
 # Gon configuration
