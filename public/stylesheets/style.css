@@ -3,7 +3,7 @@
 
 .top_stories {
   position: relative;
-  height: 100vh; }
+  min-height: 100vh; }
 
 .login_forms {
   position: absolute;
@@ -11,7 +11,7 @@
   right: 20px; }
 
 .map_canvas {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background-color: #999999;
   margin: 0px; }
@@ -25,3 +25,16 @@
   background-color: #dddddd; }
   .mission_statement h2 {
     margin: 0px; }
+
+.story {
+  position: relative;
+  float: left;
+  width: 45%;
+  height: 150px;
+  padding: 5px;
+  margin: 10px;
+  border-style: solid;
+  border-color: #bbbbbb;
+  background-color: #eeeeee; }
+
+/*# sourceMappingURL=style.css.map */

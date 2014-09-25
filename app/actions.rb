@@ -15,8 +15,3 @@ end
 
 post "/story/new" do
 end
-
-get "/" do
-  slim :index, :layout => :layout
-end
-
