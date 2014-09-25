@@ -67,6 +67,7 @@ get "/" do
       posted_by: "some user"
     }
   ]
+  @user = User.new
   
 
   erb :index, :layout => :'../layout'

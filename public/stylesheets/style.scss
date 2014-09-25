@@ -7,20 +7,44 @@ $backgroundDark:#d2d2d2;
 body{
   
 }
+#menu{
+  position: absolute;
+  padding: 0px;
+  margin: 0px;
+  ul{
+list-style-type: none;
+text-align: center;
+padding: 0px;
+    li{
+      padding: 0px; 
+      margin:0px;
+      margin-right: 5px; 
+      display: inline;
+    }
+  }
+}
 .horizontal_panel{
-  padding: 10px;
+  padding: 5px;
   background-color: $barColor;
   color:$white;
   text-align: center;
+  h2{
+    padding: 0px;
+    margin: 0px;
+  }
 }
 .container{
   width:80%;
+  padding: 0px;
   padding-top: 24px;
+  padding-bottom: 10px;
 }
 
 #title{
   text-align: center;
   float:left;
+  padding: 0px;
+  padding-bottom: 5px;
 }
 .top_stories{
   position: relative;
@@ -42,6 +66,11 @@ body{
 
 
 .login_forms{
+  position: relative;
+  bottom: 4px;
+  text-align: right;
+}
+.create_forms{
   position: relative;
   bottom: 4px;
   text-align: right;
@@ -88,5 +117,4 @@ body{
   margin: auto;
   overflow:auto;
   height: 70vh;
-
 }
