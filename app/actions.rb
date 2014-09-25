@@ -38,6 +38,7 @@ get "/user/new" do
   slim :'/user/new', layout: :layout
 end
 
+
 get "/user/:id" do
   @user = User.find(params[:id])
   slim :'user/show', layout: :layout
@@ -56,6 +57,7 @@ post "/user" do
     slim :'/user/new', layout: :layout
   end
 end
+
 
 get "/story/new" do
   @story = Story.new
@@ -79,3 +81,5 @@ post "/story" do
     slim :'/story/new', layout: :layout
   end
 end
+
+

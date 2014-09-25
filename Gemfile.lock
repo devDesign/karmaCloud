@@ -86,6 +86,7 @@ DEPENDENCIES
   pry
   puma
   rake
+  sass
   shotgun
   sinatra
   sinatra-activerecord
