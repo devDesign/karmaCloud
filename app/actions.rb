@@ -3,5 +3,9 @@ get "/" do
 end
 
 get "/map" do 
-  send_file '/test.html'
+  @test = "BAMF!!!!!!!!!!!!"
+
+  gon.test = @test
+  
+  erb :'map_test'
 end

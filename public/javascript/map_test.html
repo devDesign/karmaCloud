@@ -18,6 +18,8 @@
         var element = document.getElementById("test");
         getLocation();
 
+        var map_position = {};
+
         function getLocation() {
           if(navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition, showError);
@@ -27,10 +29,13 @@
         }
 
         function showPosition(position) {
-          lat = position.coords.latitude;
-          lng = position.coords.longitude;
+          var lat = position.coords.latitude;
+          var lng = position.coords.longitude;
 
-          initialize(lat,lng);
+          map_position["lat"] = lat;
+          map_position["lng"] = lng;
+
+          initialize();
         }
 
         function showError(error) {
@@ -50,14 +55,19 @@
          }
         }
 
-        function initialize(lat,lng) {
+        function initialize() {
           var mapOptions = {
-            center: { lat: lat, lng: lng},
+            center: map_position,
             zoom: 18
           };
           
-          var map = new google.maps.Map(document.getElementById('map-canvas'),
-            mapOptions);
+          var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+          var marker = new google.maps.Marker({
+            position: map_position,
+            map: map,
+            title:"Hello World!"
+          });
         }
 
       </script>
