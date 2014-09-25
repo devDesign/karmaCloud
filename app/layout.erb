@@ -5,15 +5,18 @@
     <meta charset="utf-8" />
     <meta content="IE=edge" http-equiv="X-UA-Compatible" />
     <meta content="width=device-width,initial-scale=1" name="viewport" />
+    
     <link href="/stylesheets/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="/stylesheets/style.css" rel="stylesheet" type="text/css" />
-
+    <link href="/stylesheets/jquery-ui.css" rel="stylesheet" type="text/css" />
+    
     <script href="javascript/bootstrap.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDh7gQpc44MXI-1hxqphb4VJpg92xtjgig" type="text/javascript"></script>
     <script src="javascript/map.js" type="text/javascript"></script>
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-    <script href="javascript/application.js"></script>
+    
+    <script src="javascript/jquery.js"></script>
+    <script src="javascript/application.js"></script>
+    <script src="javascript/jquery-ui.js"></script>    
 
     <title>Karma Cloud</title>
   </head>
@@ -60,9 +63,7 @@
       </form>
     </div>
   </div>
-
-
- <script>
+<script>
   $( "#login" ).dialog({
   autoOpen: false,
   width: 400,
@@ -76,9 +77,7 @@ $( "#login-link" ).click(function( event ) {
   $( "#login" ).dialog( "open" );
   event.preventDefault();
 });
-</script>
 
- <script>
   $( "#create_user" ).dialog({
   autoOpen: false,
   width: 400,
@@ -93,8 +92,6 @@ $( "#create_user-link" ).click(function( event ) {
   event.preventDefault();
 });
 </script>
-
-
 
   <%= yield %>
   </body>
