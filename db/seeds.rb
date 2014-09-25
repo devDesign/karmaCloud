@@ -10,17 +10,22 @@ FactoryGirl.define do
     karma_total  rand(100)
     karma_bank   rand(500_000)
   end
-end
 
 
-FactoryGirl.define do
-  factory :story do
-    title        Faker::Lorem.sentence(3)
-    content      Faker::Lorem.paragraph
-    latitude     Faker::Address.latitude
-    longitude    Faker::Address.longitude
-    mood         # green or red
-    user    
+trait :with_stories do
+  
+  after :create do |user|
+    FactoryGirl.create_list :story 
   end
 end
 
+
+
+# factory :story do
+#       title        Faker::Lorem.sentence(3)
+#       content      Faker::Lorem.paragraph
+#       latitude     Faker::Address.latitude
+#       longitude    Faker::Address.longitude
+#       mood         # green or red
+#       user    
+#     end
