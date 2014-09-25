@@ -1,14 +1,14 @@
 
 FactoryGirl.define do
   factory :user do
-    user_name    Faker::Internet.user_name
-    password     "test"
-    name         Faker::Name.name
-    email        Faker::Internet.email
-    latitude     Faker::Address.latitude
-    longitude    Faker::Address.longitude
-    karma_total  100
-    karma_bank   10000
+    sequence(:user_name)  {|n| Faker::Internet.user_name + "#{n}"}
+    password              Digest::SHA1.hexdigest("test")
+    name                  Faker::Name.name
+    sequence(:email)      {|n| "#{n}" + Faker::Internet.email}
+    latitude              Faker::Address.latitude
+    longitude             Faker::Address.longitude
+    karma_total           100
+    karma_bank            10000
 
     factory :user_with_story do
       
@@ -23,7 +23,7 @@ FactoryGirl.define do
     content      Faker::Lorem.paragraph
     latitude     Faker::Address.latitude
     longitude    Faker::Address.longitude
-    mood         "green"  
+    mood         {["green","red"].sample}
     user
 
     factory :story_with_comments do 
@@ -42,4 +42,6 @@ end
 
 
 
-user = FactoryGirl.create :user_with_story
+100.times do
+  user = FactoryGirl.create :user_with_story
+end
