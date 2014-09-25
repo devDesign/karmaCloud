@@ -13,6 +13,9 @@ gem 'sinatra-activerecord'
 gem 'puma'
 gem 'tux'
 
+gem 'faker'
+gem 'factory_girl'
+gem 'geocoder'
 gem 'gon-sinatra'
 
 group :development, :test do
