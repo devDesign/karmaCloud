@@ -9,11 +9,12 @@ body{
 }
 #menu{
   position: absolute;
+  width: 500px;
+  left:0px;
   padding: 0px;
   margin: 0px;
   ul{
 list-style-type: none;
-text-align: center;
 padding: 0px;
     li{
       padding: 0px; 
@@ -34,17 +35,27 @@ padding: 0px;
   }
 }
 .container{
+  position: relative;
   width:80%;
   padding: 0px;
-  padding-top: 24px;
-  padding-bottom: 10px;
+  padding-top: 12px;
+  padding-bottom: 0px;
+}
+.header{
+  height: 50px;
+  width: 100%;
 }
 
 #title{
-  text-align: center;
-  float:left;
+  
+  position: relative;
+  top:0px;
   padding: 0px;
   padding-bottom: 5px;
+  h1{
+    padding: 0px;
+    margin: 0px;
+  }   
 }
 .top_stories{
   position: relative;
@@ -55,6 +66,7 @@ padding: 0px;
   background: -ms-linear-gradient(top, $backgroundDark, $backgroundLight);
   background: -o-linear-gradient(top, $backgroundDark, $backgroundLight);
 }
+
 .top_story{
   position: relative;
   display: inline-block;
@@ -98,7 +110,7 @@ padding: 0px;
   text-align: center;
   vertical-align:middle;
   position: relative;
-  padding-top: 24px;
+  padding-top: 0px;
   h2{
     margin: 0px;
   }

@@ -1,6 +1,9 @@
+=begin
 get '/stylesheets/style.css' do
   scss :styles
 end
+=end
+
 
 get "/map" do 
   
@@ -70,7 +73,7 @@ get "/" do
     }
   ]
   @user = User.new
-  
+  @users = User.all
   @stories = Story.all
   erb :index, :layout => :'../layout'
 

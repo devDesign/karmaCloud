@@ -7,8 +7,8 @@
     <meta content="width=device-width,initial-scale=1" name="viewport" />
     
     <link href="/stylesheets/bootstrap.css" rel="stylesheet" type="text/css" />
-    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css" />
     <link href="/stylesheets/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css" />
     
     <script href="javascript/bootstrap.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDh7gQpc44MXI-1hxqphb4VJpg92xtjgig" type="text/javascript"></script>
@@ -21,28 +21,32 @@
     <title>Karma Cloud</title>
   </head>
   <body>
-    <div class="container">
-      <div id="title">
-        <h1>
-          Karma Cloud
-        </h1>
-        <div id='menu'>
+      <div class='header'>
+      <div class='container'>
+  <div id='menu'>
           <ul>
             <li>create story</li>
             <li>search stories</li>
-            <li>profiles</li>
+            <li><a href='#' id='profiles-link'>profiles</a></li>
             <li><a href='#' id='login-link'>login</a></li>
             <li><a href='#' id='create_user-link'>signup</a></li>
           </ul>
-        </div>
+        </div></div></div>
+
+      <div class="container">
+        <div id="title">
+          <h1>
+            Karma Cloud
+          </h1>
+        </div>  
       </div>
+    </div>
     <div id='login'>
       <div class="login_forms">
         <form method="post" action="/user_session">
           <lable>username:</lable><input class="login-input" name="user_name" /><br><lable>password:</lable><input class="password-input" type="password" name="password" /><br><input type="submit" />
         </form>
-    </div>
-    </div>
+      </div>
     </div>
     <div id="create_user">
       <div class="create_forms">
@@ -58,6 +62,14 @@
           <input type="submit" value="Submit" />
         </form>
       </div>
+    </div>
+
+    <div id='profiles'>
+      <% @users.each do |user| %>
+        <div>
+          <%= user.user_name %>
+        </div>
+      <% end %>
     </div>
     <script>
       $( "#login" ).dialog({
@@ -85,6 +97,21 @@ $( "#login-link" ).click(function( event ) {
 // Link to open the dialog
 $( "#create_user-link" ).click(function( event ) {
   $( "#create_user" ).dialog( "open" );
+  event.preventDefault();
+});
+
+$( "#profiles" ).dialog({
+  autoOpen: false,
+  width: 500,
+  height: 600,
+  modal: true,
+  resizable: true,
+  title: "profiles" 
+});
+
+// Link to open the dialog
+$( "#profiles-link" ).click(function( event ) {
+  $( "#profiles" ).dialog( "open" );
   event.preventDefault();
 });
 </script>
