@@ -20,6 +20,18 @@ helpers do
   def login_valid?
     return true unless @user.password != encrypt(params[:password])
   end
+
+  def login_karma
+    last_login = KarmaGift.where(giver_id: 4, receiver_id: session[:user_id]).last
+    if last_login.nil? || last_login.created_at > (Time.now - 1.days)
+      @karma_gift = KarmaGift.new(
+      giver_id:    4, 
+      receiver_id: session[:user_id],
+      amount:      100
+      )
+      @karma_gift.save
+    end
+  end
 end
 
 get "/" do
@@ -78,6 +90,7 @@ post "/user_session" do
   @user = User.where(user_name: params[:user_name]).first || User.new
   if login_valid?
     session[:user_id] = @user.id
+    login_karma
     redirect request.referer
   else
     @login_errors = true

@@ -39,7 +39,7 @@
       <div class="user-actions btn-group-vertical">
         <button class="btn btn-default btn-lg">Create Story</button>
         <button class="btn btn-default btn-lg">View Latest Stories</button>
-        <% if @user.id != session[:user_id] %>
+        <% if @user.id != session[:user_id] && session[:user_id] %>
             <input type="hidden" name="id" value="<%= @user.id %>">
             <button type="submit" class="btn btn-default btn-lg">Give Karma</button>
         <% end %>

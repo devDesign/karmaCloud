@@ -12,7 +12,7 @@ class KarmaGift < ActiveRecord::Base
 
   private
   def karma_transfer
-    User.find(giver_id).give_karma(amount)
-    User.find(receiver_id).receive_karma(amount)
+    return false unless User.find(giver_id).give_karma(amount)
+    return false unless User.find(receiver_id).receive_karma(amount)
   end
 end
