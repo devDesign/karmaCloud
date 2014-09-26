@@ -49,11 +49,11 @@
 </div>
 <div class="col-md-9 user-profile-right">
   <% @user.stories.each do |story| %>
-    <div class="event">
-      <p>
-        <%= @user.user_name %> created a story:
-      </p>
-      <h3><%= story.title %></h3>
-    </div>
+      <div class="event" onclick="location.href='/story/<%= story.id %>'">
+        <p>
+          <%= @user.user_name %> created a story:
+        </p>
+        <h3><%= story.title %></h3>
+      </div>
   <% end %>
 </div>
