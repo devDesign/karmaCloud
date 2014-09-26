@@ -7,6 +7,16 @@ $backgroundDark:#d2d2d2;
 body{
   
 }
+
+.alert {
+  position: fixed;
+  top: 47px;
+  left: 0;
+  right: 0;
+  z-index: 7000;
+  width: 40%;
+  margin: 0 auto;
+}
 #menu{
   position: absolute;
   width: 500px;
@@ -160,6 +170,10 @@ padding: 0px;
 
     div {
       margin: 20px 0;
+    }
+
+    .input-group {
+      margin-bottom: 0;
     }
   }
   .user-avatar {

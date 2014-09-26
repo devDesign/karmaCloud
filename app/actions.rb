@@ -138,15 +138,18 @@ post "/comment" do
 end
 
 post "/karmagift" do
-  @amount = 100
+  @users = User.all
+  @stories = Story.all
   @user = User.find(params[:id])
   @karma_gift = KarmaGift.new(
     giver_id:    session[:user_id], 
     receiver_id: params[:id],
-    amount:      @amount
+    amount:      params[:karma_amount]
     )
   if @karma_gift.save 
-    redirect "/user/#{@user.user_name}?gift_success=true"
+    session[:gift_amount]  = params[:karma_amount]
+    session[:gift_success] = true
+    redirect "/user/#{@user.user_name}"
   else
     erb :'user/show', :layout => :'../layout'
   end
