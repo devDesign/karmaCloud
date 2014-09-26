@@ -7,20 +7,44 @@ $backgroundDark:#d2d2d2;
 body{
   
 }
+#menu{
+  position: absolute;
+  padding: 0px;
+  margin: 0px;
+  ul{
+list-style-type: none;
+text-align: center;
+padding: 0px;
+    li{
+      padding: 0px; 
+      margin:0px;
+      margin-right: 5px; 
+      display: inline;
+    }
+  }
+}
 .horizontal_panel{
-  padding: 10px;
+  padding: 5px;
   background-color: $barColor;
   color:$white;
   text-align: center;
+  h2{
+    padding: 0px;
+    margin: 0px;
+  }
 }
 .container{
   width:80%;
+  padding: 0px;
   padding-top: 24px;
+  padding-bottom: 10px;
 }
 
 #title{
   text-align: center;
   float:left;
+  padding: 0px;
+  padding-bottom: 5px;
 }
 .top_stories{
   position: relative;
@@ -42,6 +66,11 @@ body{
 
 
 .login_forms{
+  position: relative;
+  bottom: 4px;
+  text-align: right;
+}
+.create_forms{
   position: relative;
   bottom: 4px;
   text-align: right;
@@ -88,5 +117,55 @@ body{
   margin: auto;
   overflow:auto;
   height: 70vh;
-
 }
+
+/* User Profile page */
+.user-profile-left {
+  border-right: 1px solid #ccc;
+  position: fixed;
+  height: 100%;
+  background: -webkit-linear-gradient(top, #d2d2d2, #ffffff);
+  background: -moz-linear-gradient(top, #d2d2d2, #ffffff);
+  background: -ms-linear-gradient(top, #d2d2d2, #ffffff);
+  background: -o-linear-gradient(top, #d2d2d2, #ffffff);
+  
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin: 10px 0;
+    }
+  }
+  .inner-bar {
+    width: 60%;
+    margin: 30px auto;
+    min-width: 210px;
+
+    div {
+      margin: 40px 0;
+    }
+  }
+  .user-avatar {
+    border-radius: 100px;
+  }
+}
+
+.user-profile-right {
+  margin-left: 25%;
+  float: left;
+  padding: 25px 50px;
+
+  .event {
+    width: 90%;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 4px;
+
+    p {
+      color: #777;
+    }
+  }
+}
+

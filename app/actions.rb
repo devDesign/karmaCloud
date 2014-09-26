@@ -1,10 +1,19 @@
+get '/stylesheets/style.css' do
+  scss :styles
+end
+
+get '/map' do
+  erb :'/map_test'
+end
 
 
 get "/map" do  
-  # Request to server for stories published in last 24 hours
-  # Pass array of stories via gon.variable = variable
-  # The output of an AR::where query is an array of objects
   erb :'map_test'
+end
+
+get '/stories.json' do
+  @stories = Story.where("created_at > ?", Date.yesterday)
+  json @stories
 end
 
 helpers do
@@ -18,20 +27,21 @@ helpers do
   end
 end
 
+
 post "/user_session/new" do
   @user = User.where(user_name: params[:user_name]).first || User.new
   if login_valid?
     session[:user_id] = @user.id
-    redirect '/'
+    redirect request.referer
   else
     @login_errors = true
-    redirect '/?login_errors=true'
+    redirect request.referer
   end
 end
 
 delete "/user_session" do
   session[:user_id] = nil
-  redirect '/'
+  redirect request.referer
 end
 
 get "/user/new" do
@@ -49,6 +59,7 @@ post "/user" do
   @user = User.new(
     user_name: params[:user_name],
     password:  encrypt(params[:password]),
+    name:      params[:name],
     email:     params[:email]
     )
   if @user.save
