@@ -51,7 +51,9 @@ get "/" do
 
 end
 
-post "/user_session/new" do
+
+
+post "/user_session" do
 
   @user = User.where(user_name: params[:user_name]).first || User.new
   if login_valid?
@@ -98,28 +100,42 @@ post "/user" do
   end
 end
 
-get "/story/new" do
-  @story = Story.new
-  slim :'story/new', layout: :layout
-end
-
 get "/story/:id" do
-  slim :'story/show', layout: :layout
+  @user = User.new
+  @users = User.all
+  @stories = Story.all
+  @story = Story.find(params[:id])
+  @comment = Comment.new
+  erb :'story/show', :layout => :'../layout'
 end
 
 post "/story" do
   @location_query
   @user = User.find(session[:user_id])
   @story = @user.stories.new(
-    title:    params[:title],
-    content:  params[:content],
-    mood:     params[:mood],
-    location: params[:location]
+    title:     params[:title],
+    content:   params[:content],
+    mood:      params[:mood],
+    location:  params[:location],
+    user_name: @user.user_name
     )
   if @story.save
     redirect "/story/#{@story.id}"
   else
     slim :'/story/new', layout: :layout
+  end
+end
+
+post "/comment" do
+  @story = Story.find(params[:story_id])
+  @comment = @story.comments.new(
+    user_id: session[:user_id],
+    content: params[:content]
+    )
+  if @comment.save
+    redirect "/story/#{@story.id}"
+  else
+    erb :'/story/show', :layout => :'../layout'
   end
 end
 

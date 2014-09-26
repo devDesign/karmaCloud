@@ -107,7 +107,6 @@
       <% @stories.each do |story| %>
       <div>
         <%= story.mood %>
-        <%= User.find(story.user_id).user_name %> -
         <%= story.title %> -
         <%= distance_of_time_in_words(story.created_at, Time.now, include_seconds: true) %> ago
         <%= story.location %>

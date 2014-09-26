@@ -1,0 +1,48 @@
+<div class="horizontal_panel">
+  <div class="top_story">
+    <h2>
+    Story Page
+    </h2>
+  </div>
+</div>
+<div class="container">
+  <div class="col-md-6 story-view-left">
+    <h1><%= @story.title %> </h1>
+    <p class="lead"><%= @story.content %></p>
+    <small>
+      posted <%= distance_of_time_in_words(@story.created_at, Time.now, include_seconds: true) %> ago
+    </small>
+  </div>
+  <div class="col-md-6 story-view-right">
+    <div class="map">
+      <h1>I'm a map!</h1>
+    </div>
+  </div>
+  <hr class="col-md-12">
+  <div class="col-md-6 comments">
+    <form method="post" action="/comment" class="comment-form">
+      <textarea name="content" maxlength="500" rows="3" placeholder="Enter your comment here">
+        <%= @comment.content %>
+      </textarea>
+      <input type="hidden" name="story_id" value="<%= @story.id %>">
+      <% if session[:user_id] %>
+      <input type="submit" class="btn btn-default">  
+      <% else %>
+        <input type="submit" disabled class="btn btn-default" value="Sign in to post a comment">
+      <% end %>
+    </form>
+    <hr>
+
+    <% @story.comments.order(created_at: :desc).each do |comment| %>
+      <div class="comment">
+        <div>
+          <p class="small"><%= comment.user.user_name %> - 
+            <span class="smaller"><%= distance_of_time_in_words(@story.created_at, Time.now, include_seconds: true) %> ago</span>
+          </p>
+        <p><%= comment.content %></p>
+        </div>
+      </div>
+      <hr>
+    <% end %>
+  </div>
+</div>
