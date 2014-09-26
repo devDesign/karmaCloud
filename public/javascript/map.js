@@ -1,4 +1,4 @@
-$(function(){
+  $(function(){
   $.ajax({
     type: "GET",
     url: "/stories.json",
@@ -21,7 +21,7 @@ function getLocation() {
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition, showError);
   } else {
-    element.innerHTML = "GeoLocation is not supported by the Browser";
+    // not supported
   }
 }
 

@@ -3,7 +3,7 @@ longitudes = []
 
 
 1000.times do 
-  random_position = RandomLocation.near_by(49.282102, -123.107880, 1000) 
+  random_position = RandomLocation.near_by(49.282102, -123.107880, 5_000_000) 
 
   latitudes << random_position[0]
   longitudes << random_position[1]
@@ -17,8 +17,8 @@ FactoryGirl.define do
     password              Digest::SHA1.hexdigest("test")
     name                  Faker::Name.name
     sequence(:email)      {|n| "#{n}" + Faker::Internet.email}
-    sequence(:latitude)   {latitudes.sample}
-    sequence(:longitude)  {longitudes.sample}
+    sequence(:latitude)   {Faker::Address.latitude}
+    sequence(:longitude)  {Faker::Address.longitude}
     karma_total           100
     karma_bank            10000
 
@@ -33,8 +33,8 @@ FactoryGirl.define do
   factory :story do
     title        Faker::Lorem.sentence
     content      Faker::Lorem.paragraph
-    sequence(:latitude)   {latitudes.sample}
-    sequence(:longitude)  {longitudes.sample}
+    sequence(:latitude)   {Faker::Address.latitude}
+    sequence(:longitude)  {Faker::Address.longitude}
     mood         {["green","red"].sample}
     user
 
