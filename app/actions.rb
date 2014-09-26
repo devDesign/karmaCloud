@@ -42,7 +42,6 @@ helpers do
   end
 end
 
-<<<<<<< HEAD
 get "/" do
   
   @user = User.new
@@ -52,12 +51,8 @@ get "/" do
 
 end
 
-
-post "/user_session" do
-=======
-
 post "/user_session/new" do
->>>>>>> maps-api
+
   @user = User.where(user_name: params[:user_name]).first || User.new
   if login_valid?
     session[:user_id] = @user.id

@@ -1,5 +1,5 @@
 // This script works with a form in the erb file. The form must
-// have two hidden fields. One named "browser_lattitude", the 
+// have two hidden fields. One named "browser_latitude", the 
 // other named "browser_longitude".
 
 // to call the script add onclick="get_browser_location(this.form);"
