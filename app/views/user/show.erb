@@ -1,3 +1,13 @@
+<% if params[:gift_success] %>
+  <div class="alert alert-success alert-dismissable" role="alert">
+    <button type="button" class="close" data-dismissable="alert">
+      <span aria-hidden="true">&times;</span>
+      <span class="st-only">Close</span>
+    </button>
+    <strong>Success! You gifted <%= @user.user_name %> <%= @amount %> karma!</strong>
+  </div>
+<% end %>
+
 <div class="horizontal_panel">
   <div class="top_story">
     <h2>
@@ -25,9 +35,16 @@
         </h4>
       </div>
     </div>
-    <div class="user-actions btn-group-vertical">
-      <button class="btn btn-default btn-lg">Create Story</button><button class="btn btn-default btn-lg">View Latest Stories</button><button class="btn btn-default btn-lg">Give Karma</button>
-    </div>
+    <form method="post" action="/karmagift">
+      <div class="user-actions btn-group-vertical">
+        <button class="btn btn-default btn-lg">Create Story</button>
+        <button class="btn btn-default btn-lg">View Latest Stories</button>
+        <% if @user.id != session[:user_id] %>
+            <input type="hidden" name="id" value="<%= @user.id %>">
+            <button type="submit" class="btn btn-default btn-lg">Give Karma</button>
+        <% end %>
+      </div>
+    </form>
   </div>
 </div>
 <div class="col-md-9 user-profile-right">

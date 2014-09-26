@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140925043201) do
+ActiveRecord::Schema.define(version: 20140926020038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(version: 20140925043201) do
     t.decimal  "latitude"
     t.decimal  "longitude"
     t.string   "avatar_url"
-    t.integer  "karma_total"
-    t.integer  "karma_bank"
+    t.integer  "karma_total", default: 0
+    t.integer  "karma_bank",  default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
