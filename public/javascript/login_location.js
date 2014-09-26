@@ -1,21 +1,26 @@
-// This script works with a form in the erb file. The form must
-// have two hidden fields. One named "browser_latitude", the 
-// other named "browser_longitude".
+IMPLEMENTATION
 
-// to call the script add onclick="get_browser_location(this.form);"
-// to the submit button attributes. And you should be good to go!
+1. form with id="location_form"
+2. two hidden input fields: browser_latitude, browser_longitude
+3. a button with id="form_submit_btn"
+4. Jquery must be loaded before login_location.js
 
 
-
+$(document).ready(function(){
+  $("#form_submit_btn").on("click", function(e){
+    e.preventDefault();
+    get_browser_location($("#location_form")[0]);
+  });
+});
 var js_form = null;
 
 function get_browser_location(form){
-  js_form = form
-
+  js_form = form;
+  
    if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition, showError);
    } else {
-    // not supported
+    
    }
 }
 
@@ -23,8 +28,12 @@ function showPosition(position) {
   var lat = position.coords.latitude;
   var lng = position.coords.longitude;
 
+  console.log(lat + " " + lng);
+
   js_form.browser_lattitude.value = lat;
   js_form.browser_longitude.value = lng;
+
+  js_form.submit();
 }
 
 function showError(error) {
