@@ -17,6 +17,7 @@ gem 'faker'
 gem 'factory_girl'
 gem 'geocoder'
 gem 'gon-sinatra'
+gem 'random-location'
 
 group :development, :test do
   gem 'pry'

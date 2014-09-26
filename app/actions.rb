@@ -9,6 +9,11 @@ get '/map' do
   erb :'/map_test'
 end
 
+
+get "/map" do  
+  erb :'map_test'
+end
+
 get '/stories.json' do
   @stories = Story.where("created_at > ?", Date.yesterday)
   json @stories
@@ -106,10 +111,11 @@ post "/story" do
   @location_query
   @user = User.find(session[:user_id])
   @story = @user.stories.new(
-    title:    params[:title],
-    content:  params[:content],
-    mood:     params[:mood],
-    location: params[:location]
+    title:     params[:title],
+    content:   params[:content],
+    mood:      params[:mood],
+    location:  params[:location],
+    user_name: @user.user_name
     )
   if @story.save
     redirect "/story/#{@story.id}"

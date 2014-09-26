@@ -16,6 +16,7 @@ require 'gon-sinatra'
 require 'pg'
 require 'pry'
 require 'digest/sha1'
+require 'random-location'
 
 
 
