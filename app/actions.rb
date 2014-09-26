@@ -1,6 +1,9 @@
+=begin
 get '/stylesheets/style.css' do
   scss :styles
 end
+=end
+
 
 get '/map' do
   erb :'/map_test'
@@ -35,56 +38,14 @@ helpers do
 end
 
 get "/" do
-
-  gon.stories = [
-    {
-      latitude: 49.281956099999995,
-      longitude: -123.108346,
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed sapien vel mauris aliquet commodo. Pellentesque non lacus ante. Nunc nibh lectus, dapibus ut fringilla sit amet, lacinia sit amet magna. Nam rhoncus lectus eu nunc efficitur viverra. Phasellus pellentesque eget orci vel ultricies. Phasellus in odio in tellus fermentum hendrerit sed a ante. Cras dignissim, ex gravida vestibulum finibus, odio justo condimentum libero, id finibus mi elit sit amet enim. Quisque vulputate viverra eros, at viverra nibh pretium ac. Duis molestie ante vitae elit pellentesque, at fringilla nisi congue. Pellentesque sagittis rhoncus pellentesque. Vivamus scelerisque, mauris vitae interdum fermentum, orci massa pharetra massa, ultricies efficitur odio arcu eu sem. Nam suscipit nulla sed ipsum lacinia, eu imperdiet ante condimentum. Proin accumsan cursus ligula, vel luctus libero lacinia sit amet.",
-      posted_by: "some user"
-    },
-
-    {
-      latitude: 50.2819561,
-      longitude: -123.1083461,
-      content: "Story content",
-      posted_by: "some user"
-    },
-
-    {
-      latitude: 49.2819562,
-      longitude: -123.1083462,
-      content: "Story content",
-      posted_by: "some user"
-    },
-
-    {
-      latitude: 49.2819563,
-      longitude: -124.1083463,
-      content: "Story content",
-      posted_by: "some user"
-    },
-
-    {
-      latitude: 49.63,
-      longitude: -123.1083464,
-      content: "Story content",
-      posted_by: "some user"
-    },
-
-    {
-      latitude: 49.2819563,
-      longitude: -123.108,
-      content: "Story content",
-      posted_by: "some user"
-    }
-  ]
-  @user = User.new
   
+  @user = User.new
+  @users = User.all
   @stories = Story.all
   erb :index, :layout => :'../layout'
 
 end
+
 
 post "/user_session" do
   @user = User.where(user_name: params[:user_name]).first || User.new
@@ -110,11 +71,14 @@ end
 
 
 get "/user/:user_name" do
+  @stories = Story.all
+  @users = User.all
   @user = User.where(user_name: params[:user_name]).first
   erb :'user/show', :layout => :'../layout'
 end
 
 post "/user" do
+  @users= User.all
   @user = User.new(
     user_name: params[:user_name],
     password:  encrypt(params[:password]),
