@@ -13,8 +13,10 @@
 });
 
 var stories = null;
-
 var map_position = {};
+var green_icon = 'green_map_marker.png'
+var red_icon = 'red_map_marker.png'
+var yellow_icon = 'yellow_map_marker.png'
 
 
 function getLocation() {
@@ -62,15 +64,16 @@ function create_info_box(story) {
 
 function create_markers(map){
 
-  stories.forEach(function(element, index, array){
+  var marker_arr = []
 
-    console.log(element.latitude, element.longitude);
+  stories.forEach(function(element, index, array){
 
     var marker = new google.maps.Marker({
       position: {lat: Number(element.latitude), lng: Number(element.longitude)},
-      map: map,
-      title:"Hello World!"  
+      icon: (element.mood == 'green')? green_icon : red_icon      
     });
+
+    marker_arr.push(marker) ;
 
     var info_box = create_info_box(element);
     google.maps.event.addListener(marker, 'click', function() {
@@ -78,6 +81,7 @@ function create_markers(map){
     });
 
   });
+  return marker_arr;
 
 }
 
@@ -85,13 +89,29 @@ function initialize() {
 
   var mapOptions = {
     center: map_position,
-    zoom: 13, draggable: true, 
+    zoom: 2, draggable: true, 
     zoomControl: true, 
     scrollwheel: false, 
     disableDoubleClickZoom: false
   };
   
   var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-  create_markers(map);
+  var markers = create_markers(map);
+
+  var clusterStyles = [{
+    textColor: 'black',
+    url: yellow_icon,
+    height: 30,
+    width: 30,
+    textSize: 12
+  }]
+
+  var clusterOptions = {
+     gridSize: 50,
+     styles: clusterStyles,
+     maxZoom: 15
+  };
+
+  var marker_clusterer = new MarkerClusterer(map, markers, clusterOptions);
 }
 

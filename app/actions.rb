@@ -5,11 +5,6 @@ end
 =end
 
 
-get '/map' do
-  erb :'/map_test'
-end
-
-
 get "/map" do  
   erb :'map_test'
 end
@@ -43,16 +38,21 @@ helpers do
 end
 
 get "/" do
-  
-  @user = User.new
+  if session[:user_id] == nil
+    @user = User.new
+  else
+    @current_user = User.find(session[:user_id])
+  end
   @users = User.all
-  @stories = Story.all
+  @stories = Story.limit(100)
   erb :index, :layout => :'../layout'
 
 end
 
 
+
 post "/user_session" do
+
   @user = User.where(user_name: params[:user_name]).first || User.new
   if login_valid?
     session[:user_id] = @user.id
@@ -76,8 +76,7 @@ end
 
 
 get "/user/:user_name" do
-  @stories = Story.all
-  @users = User.all
+  @current_user = User.find(session[:user_id])
   @user = User.where(user_name: params[:user_name]).first
   erb :'user/show', :layout => :'../layout'
 end
@@ -99,6 +98,7 @@ post "/user" do
 end
 
 get "/story/:id" do
+  @current_user = User.find(session[:user_id])
   @user = User.new
   @users = User.all
   @stories = Story.all
@@ -109,13 +109,15 @@ end
 
 post "/story" do
   @location_query
-  @user = User.find(session[:user_id])
+  
   @story = @user.stories.new(
     title:     params[:title],
     content:   params[:content],
     mood:      params[:mood],
     location:  params[:location],
-    user_name: @user.user_name
+    user_name: @user.user_name,
+    latitude: params[:browser_latitude],
+    longitude: params[:browser_longitude]
     )
   if @story.save
     redirect "/story/#{@story.id}"
