@@ -10,13 +10,13 @@
     <link href="/stylesheets/jquery-ui.css" rel="stylesheet" type="text/css" />
     <link href="/stylesheets/style.css" rel="stylesheet" type="text/css" />
     
-    <script href="javascript/bootstrap.js"></script>
+    <script href="/javascript/bootstrap.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDh7gQpc44MXI-1hxqphb4VJpg92xtjgig" type="text/javascript"></script>
-    <script src="javascript/map.js" type="text/javascript"></script>
+    <script src="/javascript/map.js" type="text/javascript"></script>
     
-    <script src="javascript/jquery.js"></script>
-    <script src="javascript/application.js"></script>
-    <script src="javascript/jquery-ui.js"></script>    
+    <script src="/javascript/jquery.js"></script>
+    <script src="/javascript/jquery-ui.js"></script>  
+    <script src="/javascript/application.js"></script>  
 
     <title>Karma Cloud</title>
   </head>
@@ -25,8 +25,8 @@
       <div class='container'>
   <div id='menu'>
           <ul>
-            <li>create story</li>
-            <li>search stories</li>
+            <li><a href='#' id='create_story-link'>create story</a></li>
+            <li><a href='#' id='stories-link'>search stories</a></li>
             <li><a href='#' id='profiles-link'>profiles</a></li>
             <li><a href='#' id='login-link'>login</a></li>
             <li><a href='#' id='create_user-link'>signup</a></li>
@@ -64,6 +64,7 @@
       </div>
     </div>
 
+
     <div id='profiles'>
       <% @users.each do |user| %>
         <div>
@@ -71,62 +72,47 @@
         </div>
       <% end %>
     </div>
+    <div id='create_story'>
+      <form method='post' action='/story'>
+        <label>Title</label>
+        <input name='title' type='text' class='story_title' />
+        <div class='story_input'>
+          <textarea cols="100" rows="10" name='content'></textarea>
+        </div>
+        <fieldset>
+         <legend>mood</legend>
+            <label>select</label>            
+            <input type = "radio"
+                   name = "mood"
+                   id = "red"
+                   value = "red"
+                   checked = "checked" />
+            <label for = "red">red</label>
+            
+            <input type = "radio"
+                   name = "mood"
+                   id = "green"
+                   value = "green" />
+            <label for = "green">green</label>
+        </fieldset>
+        <input type='hidden' name='user_id' value='<%= session[:id] %>' />
+        <input type='hidden' name='location' value='<%= session[:user_location] %>' />
+        <input type='submit' />
+      </form>
+    </div>
+
 
     <div id='stories'>
       <% @stories.each do |story| %>
       <div>
-        <%= story.title %>
         <%= story.mood %>
-        <%= story.created_at %>
+        <%= User.find(story.user_id).user_name %> -
+        <%= story.title %> -
+        <%= distance_of_time_in_words(story.created_at, Time.now, include_seconds: true) %> ago
         <%= story.location %>
       </div>
       <% end %>
     </div>
-    <script>
-      $( "#login" ).dialog({
-        autoOpen: false,
-        width: 400,
-        modal: true,
-        resizable: false,
-        title: "Login to Karma Cloud" 
-      });
-
-// Link to open the dialog
-$( "#login-link" ).click(function( event ) {
-  $( "#login" ).dialog( "open" );
-  event.preventDefault();
-});
-
-  $( "#create_user" ).dialog({
-  autoOpen: false,
-  width: 400,
-  modal: true,
-  resizable: false,
-  title: "Welcome to Karma Cloud" 
-});
-
-// Link to open the dialog
-$( "#create_user-link" ).click(function( event ) {
-  $( "#create_user" ).dialog( "open" );
-  event.preventDefault();
-});
-
-$( "#profiles" ).dialog({
-  autoOpen: false,
-  width: 500,
-  height: 600,
-  modal: true,
-  resizable: true,
-  title: "profiles" 
-});
-
-// Link to open the dialog
-$( "#profiles-link" ).click(function( event ) {
-  $( "#profiles" ).dialog( "open" );
-  event.preventDefault();
-});
-</script>
-
   <%= yield %>
   </body>
   </html>

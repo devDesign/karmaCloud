@@ -134,12 +134,16 @@ padding: 0px;
 /* User Profile page */
 .user-profile-left {
   border-right: 1px solid #ccc;
-  position: fixed;
+  position: absolute;
   height: 100%;
   background: -webkit-linear-gradient(top, #d2d2d2, #ffffff);
   background: -moz-linear-gradient(top, #d2d2d2, #ffffff);
   background: -ms-linear-gradient(top, #d2d2d2, #ffffff);
   background: -o-linear-gradient(top, #d2d2d2, #ffffff);
+
+  img {
+    margin-bottom: 20px;
+  }
   
   ul {
     list-style: none;
@@ -155,7 +159,7 @@ padding: 0px;
     min-width: 210px;
 
     div {
-      margin: 40px 0;
+      margin: 20px 0;
     }
   }
   .user-avatar {
@@ -167,6 +171,7 @@ padding: 0px;
   margin-left: 25%;
   float: left;
   padding: 25px 50px;
+  overflow: auto;
 
   .event {
     width: 90%;
@@ -179,5 +184,9 @@ padding: 0px;
       color: #777;
     }
   }
+}
+
+.story_title{
+  width: 300px;
 }
 

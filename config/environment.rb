@@ -8,7 +8,7 @@ require 'active_support/all'
 require 'sinatra'
 require 'sinatra/activerecord'
 require "sinatra/json"
-
+require 'action_view'
 require 'geocoder'
 require 'faker'
 require 'factory_girl'
@@ -34,7 +34,7 @@ configure do
   set :views, File.join(Sinatra::Application.root, "app", "views")
 
 end
-
+include ActionView::Helpers::DateHelper
 # Gon configuration
 Sinatra::register Gon::Sinatra
 
