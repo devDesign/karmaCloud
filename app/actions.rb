@@ -56,6 +56,7 @@ post "/user_session" do
   @user = User.where(user_name: params[:user_name]).first || User.new
   if login_valid?
     session[:user_id] = @user.id
+    @user.update(latitude: params[:latitude], longitude: params[:longitude])
     login_karma
     redirect request.referer
   else
