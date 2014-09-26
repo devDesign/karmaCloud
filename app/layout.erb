@@ -14,7 +14,6 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDh7gQpc44MXI-1hxqphb4VJpg92xtjgig" type="text/javascript"></script>
     <script src="/javascript/map.js" type="text/javascript"></script>
     <script src="/javascript/login_location.js"></script>
-    <script src="/javascript/jquery.js"></script>
 
     <script type="text/javascript" src="javascript/markerclusterer.js"></script>
   
@@ -62,8 +61,11 @@
     </div>
     <div id='login'>
       <div class="login_forms">
-        <form method="post" action="/user_session">
-          <lable>username:</lable><input class="login-input" name="user_name" /><br><lable>password:</lable><input class="password-input" type="password" name="password" /><br><input type="submit" />
+        <form id="location_form" method="post" action="/user_session">
+          <lable>username:</lable><input class="login-input" name="user_name" /><br><lable>password:</lable><input class="password-input" type="password" name="password" /><br>
+          <input type="hidden" id="browser_latitude" name="latitude">
+          <input type="hidden" id="browser_longitude" name="longitude">
+          <button id="form_submit_btn">Submit</button>
         </form>
       </div>
     </div>
@@ -107,19 +109,10 @@
             <label for = "green">green</label>
         </fieldset>
         <input type='hidden' name='user_id' value='<%= session[:id] %>' />
-        <input type='hidden' name='browser_latitude'  />
-        <input type='hidden' name='browser_longitude'  />
         <div id='create_story-submit'>submit</div>
       </form>
     </div>
-    <script>
-      $('#create_story-submit').click(function(){
-      get_browser_location(this.form);
-        $('#create_story-form').submit();});
-      </script>
-
-
-
+   
     <script>
 
     $( "#create_story" ).dialog({
