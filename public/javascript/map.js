@@ -101,8 +101,8 @@ function initialize() {
   var clusterStyles = [{
     textColor: 'black',
     url: yellow_icon,
-    height: 30,
-    width: 30,
+    height: 57,
+    width: 57,
     textSize: 12
   }]
 
