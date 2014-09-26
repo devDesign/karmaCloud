@@ -71,6 +71,17 @@
         </div>
       <% end %>
     </div>
+
+    <div id='stories'>
+      <% @stories.each do |story| %>
+      <div>
+        <%= story.title %>
+        <%= story.mood %>
+        <%= story.created_at %>
+        <%= story.location %>
+      </div>
+      <% end %>
+    </div>
     <script>
       $( "#login" ).dialog({
         autoOpen: false,
