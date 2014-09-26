@@ -1,7 +1,21 @@
-console.log(gon.stories);
+$(function(){
+  $.ajax({
+    type: "GET",
+    url: "/stories.json",
+    datatype: "json"
+  })
+  .done(function(data){
+    stories = data;
+    getLocation();
+  })
 
+  .fail(function(){alert("fail");}); 
+});
+
+var stories = null;
 
 var map_position = {};
+
 
 function getLocation() {
   if(navigator.geolocation) {
@@ -39,7 +53,6 @@ function showError(error) {
 }
 
 
-
 function create_info_box(story) {
   return new google.maps.InfoWindow({ 
     content: story.content, 
@@ -49,13 +62,13 @@ function create_info_box(story) {
 
 function create_markers(map){
 
-  gon.stories.forEach(function(element, index, array){
+  stories.forEach(function(element, index, array){
 
-    console.log(element);
+    console.log(element.latitude, element.longitude);
+
     var marker = new google.maps.Marker({
-      position: {lat: element.latitude, lng: element.longitude},
+      position: {lat: Number(element.latitude), lng: Number(element.longitude)},
       map: map,
-      animation: google.maps.Animation.DROP,
       title:"Hello World!"  
     });
 
@@ -79,7 +92,6 @@ function initialize() {
   };
   
   var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
   create_markers(map);
 }
 

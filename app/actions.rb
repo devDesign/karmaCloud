@@ -5,15 +5,13 @@ end
 =end
 
 
-get "/map" do 
-  
-  # Request to server for stories published in last 24 hours
-  # Pass array of stories via gon.variable = variable
-  # The output of an AR::where query is an array of objects
+get '/map' do
+  erb :'/map_test'
+end
 
-  
-  
-  erb :'map_test'
+get '/stories.json' do
+  @stories = Story.where("created_at > ?", Date.yesterday)
+  json @stories
 end
 
 helpers do
@@ -27,6 +25,8 @@ helpers do
   end
 end
 
+<<<<<<< HEAD
+=======
 get "/" do
 
   gon.stories = [
@@ -79,6 +79,7 @@ get "/" do
 
 end
 
+>>>>>>> 7bff50bb101ba2083e39e27a0e78c7b28d60a7e0
 post "/user_session/new" do
   @user = User.where(user_name: params[:user_name]).first || User.new
   if login_valid?
