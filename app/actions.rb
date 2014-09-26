@@ -42,7 +42,6 @@ helpers do
   end
 end
 
-<<<<<<< HEAD
 get "/" do
   
   @user = User.new
@@ -54,10 +53,6 @@ end
 
 
 post "/user_session" do
-=======
-
-post "/user_session/new" do
->>>>>>> maps-api
   @user = User.where(user_name: params[:user_name]).first || User.new
   if login_valid?
     session[:user_id] = @user.id
@@ -116,10 +111,11 @@ post "/story" do
   @location_query
   @user = User.find(session[:user_id])
   @story = @user.stories.new(
-    title:    params[:title],
-    content:  params[:content],
-    mood:     params[:mood],
-    location: params[:location]
+    title:     params[:title],
+    content:   params[:content],
+    mood:      params[:mood],
+    location:  params[:location],
+    user_name: @user.user_name
     )
   if @story.save
     redirect "/story/#{@story.id}"

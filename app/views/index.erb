@@ -49,7 +49,7 @@
   <% end %>
   <div>
     <p><%= story.content %></p>
-    <p>posted by </p>
+    <p>posted by <%= story.user_name %> </p>
     <p><%= distance_of_time_in_words(story.created_at, Time.now, include_seconds: true) %> ago</p>
     
   </div>
