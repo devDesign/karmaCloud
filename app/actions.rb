@@ -22,8 +22,6 @@ helpers do
   end
 end
 
-<<<<<<< HEAD
-=======
 get "/" do
 
   gon.stories = [
@@ -76,8 +74,7 @@ get "/" do
 
 end
 
->>>>>>> 7bff50bb101ba2083e39e27a0e78c7b28d60a7e0
-post "/user_session/new" do
+post "/user_session" do
   @user = User.where(user_name: params[:user_name]).first || User.new
   if login_valid?
     session[:user_id] = @user.id
@@ -99,9 +96,9 @@ get "/user/new" do
 end
 
 
-get "/user/:id" do
-  @user = User.find(params[:id])
-  slim :'user/show', layout: :layout
+get "/user/:user_name" do
+  @user = User.where(user_name: params[:user_name]).first
+  erb :'user/show', :layout => :'../layout'
 end
 
 post "/user" do
@@ -113,9 +110,9 @@ post "/user" do
     )
   if @user.save
     session[:user_id] = @user.id
-    redirect '/'
+    redirect request.referer
   else
-    slim :'/user/new', layout: :layout
+    erb :index, :layout => :'../layout'
   end
 end
 
@@ -143,5 +140,21 @@ post "/story" do
     slim :'/story/new', layout: :layout
   end
 end
+
+post "/karmagift" do
+  @amount = 100
+  @user = User.find(params[:id])
+  @karma_gift = KarmaGift.new(
+    giver_id:    session[:user_id], 
+    receiver_id: params[:id],
+    amount:      @amount
+    )
+  if @karma_gift.save 
+    redirect "/user/#{@user.user_name}?gift_success=true"
+  else
+    erb :'user/show', :layout => :'../layout'
+  end
+end
+
 
 
