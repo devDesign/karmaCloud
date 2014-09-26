@@ -24,6 +24,14 @@ padding: 0px;
       display: inline;
     }
   }
+  .logout{
+    color:#428bca;
+  }
+  .logout:hover{
+    cursor: pointer;
+    color: #2a6496;
+    text-decoration: underline;
+  }
 }
 .horizontal_panel{
   padding: 5px;
@@ -130,6 +138,14 @@ padding: 0px;
   margin: auto;
   overflow:auto;
   height: 70vh;
+  .comment-link{
+    color:#428bca;
+  }
+  .comment-link:hover{
+    cursor: pointer;
+    color: #2a6496;
+    text-decoration: underline;
+  }
 }
 
 /* User Profile page */

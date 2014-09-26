@@ -43,8 +43,13 @@ get "/" do
   else
     @current_user = User.find(session[:user_id])
   end
-  @users = User.all
-  @stories = Story.limit(100)
+  @stories = Story.last(10)
+  @latest_comments = []
+  @latest_stories = @stories.reverse
+  @latest_stories.each do |story|
+    @latest_comments.push(story.comments.all)
+  end
+  @latest_comments = @latest_comments.reverse
   erb :index, :layout => :'../layout'
 
 end
@@ -98,10 +103,10 @@ post "/user" do
 end
 
 get "/story/:id" do
-  @current_user = User.find(session[:user_id])
+  if session[:user_id] != nil
+    @current_user = User.find(session[:user_id])
+  end
   @user = User.new
-  @users = User.all
-  @stories = Story.all
   @story = Story.find(params[:id])
   @comment = Comment.new
   erb :'story/show', :layout => :'../layout'

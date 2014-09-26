@@ -13,6 +13,12 @@
       margin: 0px;
       margin-right: 5px;
       display: inline; }
+  #menu .logout {
+    color: #428bca; }
+  #menu .logout:hover {
+    cursor: pointer;
+    color: #2a6496;
+    text-decoration: underline; }
 
 .horizontal_panel {
   padding: 5px;
@@ -110,6 +116,12 @@
   margin: auto;
   overflow: auto;
   height: 70vh; }
+  .story_feed .comment-link {
+    color: #428bca; }
+  .story_feed .comment-link:hover {
+    cursor: pointer;
+    color: #2a6496;
+    text-decoration: underline; }
 
 /* User Profile page */
 .user-profile-left {
