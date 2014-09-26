@@ -9,6 +9,11 @@ get '/map' do
   erb :'/map_test'
 end
 
+
+get "/map" do  
+  erb :'map_test'
+end
+
 get '/stories.json' do
   @stories = Story.where("created_at > ?", Date.yesterday)
   json @stories
@@ -37,6 +42,7 @@ helpers do
   end
 end
 
+<<<<<<< HEAD
 get "/" do
   
   @user = User.new
@@ -48,6 +54,10 @@ end
 
 
 post "/user_session" do
+=======
+
+post "/user_session/new" do
+>>>>>>> maps-api
   @user = User.where(user_name: params[:user_name]).first || User.new
   if login_valid?
     session[:user_id] = @user.id
