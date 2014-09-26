@@ -14,4 +14,16 @@ class User < ActiveRecord::Base
   validates :avatar_url, 
             format: { with: URI.regexp, message: 'Please enter a valid URL'},
             allow_blank: true
+
+  def give_karma(amount)
+    return false if amount > karma_bank
+    self.karma_bank -= amount
+    self.save
+  end
+
+  def receive_karma(amount)
+    self.karma_bank  += amount
+    self.karma_total += amount
+    self.save
+  end
 end

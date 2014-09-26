@@ -1,16 +1,17 @@
+=begin
 get '/stylesheets/style.css' do
   scss :styles
 end
+=end
 
-get "/map" do 
-  
-  # Request to server for stories published in last 24 hours
-  # Pass array of stories via gon.variable = variable
-  # The output of an AR::where query is an array of objects
 
-  
-  
-  erb :'map_test'
+get '/map' do
+  erb :'/map_test'
+end
+
+get '/stories.json' do
+  @stories = Story.where("created_at > ?", Date.yesterday)
+  json @stories
 end
 
 helpers do
@@ -22,64 +23,35 @@ helpers do
   def login_valid?
     return true unless @user.password != encrypt(params[:password])
   end
+
+  def login_karma
+    last_login = KarmaGift.where(giver_id: 4, receiver_id: session[:user_id]).last
+    if last_login.nil? || last_login.created_at > (Time.now - 1.days)
+      @karma_gift = KarmaGift.new(
+      giver_id:    4, 
+      receiver_id: session[:user_id],
+      amount:      100
+      )
+      @karma_gift.save
+    end
+  end
 end
 
 get "/" do
-
-  gon.stories = [
-    {
-      latitude: 49.281956099999995,
-      longitude: -123.108346,
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed sapien vel mauris aliquet commodo. Pellentesque non lacus ante. Nunc nibh lectus, dapibus ut fringilla sit amet, lacinia sit amet magna. Nam rhoncus lectus eu nunc efficitur viverra. Phasellus pellentesque eget orci vel ultricies. Phasellus in odio in tellus fermentum hendrerit sed a ante. Cras dignissim, ex gravida vestibulum finibus, odio justo condimentum libero, id finibus mi elit sit amet enim. Quisque vulputate viverra eros, at viverra nibh pretium ac. Duis molestie ante vitae elit pellentesque, at fringilla nisi congue. Pellentesque sagittis rhoncus pellentesque. Vivamus scelerisque, mauris vitae interdum fermentum, orci massa pharetra massa, ultricies efficitur odio arcu eu sem. Nam suscipit nulla sed ipsum lacinia, eu imperdiet ante condimentum. Proin accumsan cursus ligula, vel luctus libero lacinia sit amet.",
-      posted_by: "some user"
-    },
-
-    {
-      latitude: 50.2819561,
-      longitude: -123.1083461,
-      content: "Story content",
-      posted_by: "some user"
-    },
-
-    {
-      latitude: 49.2819562,
-      longitude: -123.1083462,
-      content: "Story content",
-      posted_by: "some user"
-    },
-
-    {
-      latitude: 49.2819563,
-      longitude: -124.1083463,
-      content: "Story content",
-      posted_by: "some user"
-    },
-
-    {
-      latitude: 49.63,
-      longitude: -123.1083464,
-      content: "Story content",
-      posted_by: "some user"
-    },
-
-    {
-      latitude: 49.2819563,
-      longitude: -123.108,
-      content: "Story content",
-      posted_by: "some user"
-    }
-  ]
-  @user = User.new
   
+  @user = User.new
+  @users = User.all
   @stories = Story.all
   erb :index, :layout => :'../layout'
 
 end
 
-post "/user_session/new" do
+
+post "/user_session" do
   @user = User.where(user_name: params[:user_name]).first || User.new
   if login_valid?
     session[:user_id] = @user.id
+    login_karma
     redirect request.referer
   else
     @login_errors = true
@@ -98,12 +70,15 @@ get "/user/new" do
 end
 
 
-get "/user/:id" do
-  @user = User.find(params[:id])
-  slim :'user/show', layout: :layout
+get "/user/:user_name" do
+  @stories = Story.all
+  @users = User.all
+  @user = User.where(user_name: params[:user_name]).first
+  erb :'user/show', :layout => :'../layout'
 end
 
 post "/user" do
+  @users= User.all
   @user = User.new(
     user_name: params[:user_name],
     password:  encrypt(params[:password]),
@@ -112,9 +87,9 @@ post "/user" do
     )
   if @user.save
     session[:user_id] = @user.id
-    redirect '/'
+    redirect request.referer
   else
-    slim :'/user/new', layout: :layout
+    erb :index, :layout => :'../layout'
   end
 end
 
@@ -142,5 +117,21 @@ post "/story" do
     slim :'/story/new', layout: :layout
   end
 end
+
+post "/karmagift" do
+  @amount = 100
+  @user = User.find(params[:id])
+  @karma_gift = KarmaGift.new(
+    giver_id:    session[:user_id], 
+    receiver_id: params[:id],
+    amount:      @amount
+    )
+  if @karma_gift.save 
+    redirect "/user/#{@user.user_name}?gift_success=true"
+  else
+    erb :'user/show', :layout => :'../layout'
+  end
+end
+
 
 

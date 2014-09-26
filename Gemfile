@@ -9,7 +9,7 @@ gem 'sass'
 gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'sinatra-activerecord'
-
+gem 'actionview'
 gem 'puma'
 gem 'tux'
 
