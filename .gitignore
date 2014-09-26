@@ -1,5 +1,6 @@
 .env
 .bundle
+.scssc
 /db/*.db
 /db/*.sqlite3
 /db/*.sqlite
