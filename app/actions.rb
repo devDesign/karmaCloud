@@ -21,7 +21,8 @@ helpers do
   end
 
   def login_valid?
-    return false unless @user.password == encrypt(params[:password])
+    return false if params[:password].blank?
+    true if @user.password == encrypt(params[:password])
   end
 
   def login_karma
@@ -110,7 +111,7 @@ get "/story/:id" do
   end
   @user = User.new
   @users = User.all
-  @stories = Story.all
+  @stories = Story.limit(100)
   @story = Story.find(params[:id])
   @comment = Comment.new
   erb :'story/show', :layout => :'../layout'
@@ -150,7 +151,7 @@ end
 
 post "/karmagift" do
   @users = User.all
-  @stories = Story.all
+  @stories = Story.limit(100)
   @user = User.find(params[:id])
   @karma_gift = KarmaGift.new(
     giver_id:    session[:user_id], 
