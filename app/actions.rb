@@ -98,13 +98,13 @@ post "/user" do
   end
 end
 
-get "/story/new" do
-  @story = Story.new
-  slim :'story/new', layout: :layout
-end
-
 get "/story/:id" do
-  slim :'story/show', layout: :layout
+  @user = User.new
+  @users = User.all
+  @stories = Story.all
+  @story = Story.find(params[:id])
+  @comment = Comment.new
+  erb :'story/show', :layout => :'../layout'
 end
 
 post "/story" do
@@ -121,6 +121,19 @@ post "/story" do
     redirect "/story/#{@story.id}"
   else
     slim :'/story/new', layout: :layout
+  end
+end
+
+post "/comment" do
+  @story = Story.find(params[:story_id])
+  @comment = @story.comments.new(
+    user_id: session[:user_id],
+    content: params[:content]
+    )
+  if @comment.save
+    redirect "/story/#{@story.id}"
+  else
+    erb :'/story/show', :layout => :'../layout'
   end
 end
 
