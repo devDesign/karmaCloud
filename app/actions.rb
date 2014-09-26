@@ -5,11 +5,6 @@ end
 =end
 
 
-get '/map' do
-  erb :'/map_test'
-end
-
-
 get "/map" do  
   erb :'map_test'
 end
