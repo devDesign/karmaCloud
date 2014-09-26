@@ -21,7 +21,7 @@ helpers do
   end
 
   def login_valid?
-    return true unless @user.password != encrypt(params[:password])
+    return false unless @user.password == encrypt(params[:password])
   end
 
   def login_karma
@@ -52,14 +52,13 @@ end
 
 
 post "/user_session" do
-
   @user = User.where(user_name: params[:user_name]).first || User.new
   if login_valid?
     session[:user_id] = @user.id
     login_karma
     redirect request.referer
   else
-    @login_errors = true
+    session[:login_error] = true
     redirect request.referer
   end
 end
@@ -76,12 +75,17 @@ end
 
 
 get "/user/:user_name" do
-  @current_user = User.find(session[:user_id])
+  if session[:user_id] == nil
+    @current_user = User.new
+  else
+    @current_user = User.find(session[:user_id])
+  end
   @user = User.where(user_name: params[:user_name]).first
   erb :'user/show', :layout => :'../layout'
 end
 
 post "/user" do
+  @stories = Story.limit(100)
   @users= User.all
   @user = User.new(
     user_name: params[:user_name],
@@ -93,12 +97,17 @@ post "/user" do
     session[:user_id] = @user.id
     redirect request.referer
   else
-    erb :index, :layout => :'../layout'
+    session[:create_user_errors]  = @user.errors.full_messages
+    redirect request.referer
   end
 end
 
 get "/story/:id" do
-  @current_user = User.find(session[:user_id])
+  if session[:user_id] == nil
+    @current_user = User.new
+  else
+    @current_user = User.find(session[:user_id])
+  end
   @user = User.new
   @users = User.all
   @stories = Story.all
