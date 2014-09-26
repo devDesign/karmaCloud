@@ -43,10 +43,13 @@ helpers do
 end
 
 get "/" do
-  
-  @user = User.new
+  if session[:user_id] == nil
+    @user = User.new
+  else
+    @current_user = User.find(session[:user_id])
+  end
   @users = User.all
-  @stories = Story.all
+  @stories = Story.limit(100)
   erb :index, :layout => :'../layout'
 
 end
@@ -76,8 +79,6 @@ end
 
 
 get "/user/:user_name" do
-  @stories = Story.all
-  @users = User.all
   @user = User.where(user_name: params[:user_name]).first
   erb :'user/show', :layout => :'../layout'
 end
@@ -109,13 +110,15 @@ end
 
 post "/story" do
   @location_query
-  @user = User.find(session[:user_id])
+  @current_user = User.find(session[:user_id])
   @story = @user.stories.new(
     title:     params[:title],
     content:   params[:content],
     mood:      params[:mood],
     location:  params[:location],
-    user_name: @user.user_name
+    user_name: @user.user_name,
+    latitude: params[:browser_latitude],
+    longitude: params[:browser_longitude]
     )
   if @story.save
     redirect "/story/#{@story.id}"

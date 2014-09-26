@@ -1,3 +1,10 @@
+<div class="horizontal_panel">
+  <div class="top_story">
+    <h2>
+    User Profile
+    </h2>
+  </div>
+</div>
 <% if params[:gift_success] %>
   <div class="alert alert-success alert-dismissable" role="alert">
     <button type="button" class="close" data-dismissable="alert">
@@ -7,14 +14,6 @@
     <strong>Success! You gifted <%= @user.user_name %> <%= @amount %> karma!</strong>
   </div>
 <% end %>
-
-<div class="horizontal_panel">
-  <div class="top_story">
-    <h2>
-    User Profile
-    </h2>
-  </div>
-</div>
 <div class="col-md-3 user-profile-left">
   <div class="inner-bar">
     <img alt="" class="user-avatar" src="http://www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(@user.email) %>?s=200" />

@@ -9,10 +9,11 @@ body{
 }
 #menu{
   position: absolute;
-  width: 500px;
+  width: 100%;
   left:0px;
   padding: 0px;
   margin: 0px;
+  z-index: 500;
   ul{
 list-style-type: none;
 padding: 0px;
@@ -188,5 +189,12 @@ padding: 0px;
 
 .story_title{
   width: 300px;
+}
+
+.profile_avatar{
+  position: absolute;
+  top: 0px;
+  right:0px;
+
 }
 

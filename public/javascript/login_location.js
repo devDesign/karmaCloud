@@ -11,7 +11,7 @@ var js_form = null;
 
 function get_browser_location(form){
   js_form = form
-
+  console.log('!!!');
    if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition, showError);
    } else {
@@ -23,7 +23,7 @@ function showPosition(position) {
   var lat = position.coords.latitude;
   var lng = position.coords.longitude;
 
-  js_form.browser_lattitude.value = lat;
+  js_form.browser_latitude.value = lat;
   js_form.browser_longitude.value = lng;
 }
 
