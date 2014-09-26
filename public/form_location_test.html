@@ -2,14 +2,16 @@
 <html>
 <head>
   <title>Form Location Test</title>
-  <script type="text/javascript" src="javascript/login_location.js"></script>
+  <script src="/javascript/jquery.js"></script>
+    <script type="text/javascript" src="javascript/login_location.js"></script>
+  
 </head>
 <body>
-  <form method="GET" action="#">
+  <form method="GET" action="#" id="location_form">
     <input type="text" placeholder"blah">
     <input type="hidden" name="browser_lattitude">
     <input type="hidden" name="browser_longitude">
-    <input type="submit" onclick="return get_browser_location(this.form);">
+    <button  id="form_submit_btn">Submit</button>
 
   </form>
 
