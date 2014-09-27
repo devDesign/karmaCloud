@@ -10,16 +10,14 @@
     </div>
     <div class="container">
       <div id="top_5">
-        <h3>Story 1</h3>
-        <div class="story"></div>
-        <h3>Story 2</h3>
-        <div class="story"></div>
-        <h3>Story 3</h3>
-        <div class="story"></div>
-        <h3>Story 4</h3>
-        <div class="story"></div>
-        <h3>Story 5</h3>
-        <div class="story"></div>
+        <% @top_stories.each do |story| %>
+          <h3><%= story.title %></h3>
+          <div class="story">
+            <p><%= story.content %></p>
+            <p>posted by <a href='/user/<%= story.user_name %>'><%= story.user_name %></a></p>
+            <p><%= distance_of_time_in_words(story.created_at, Time.now, include_seconds: true) %> ago</p>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

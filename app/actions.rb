@@ -45,6 +45,11 @@ helpers do
       @karma_gift.save
     end
   end
+
+  def get_top_stories
+    users = User.joins(:received_karmas).where('karma_gifts.created_at > ?', Time.now - 1.day).group('users.user_name').order('sum(karma_gifts.amount) desc').limit(5)
+    users.map { |u| u.stories.last }
+  end
 end
 
 get "/" do
@@ -53,6 +58,7 @@ get "/" do
   else
     @current_user = User.find(session[:user_id])
   end
+  @top_stories = get_top_stories
   @stories = Story.last(10)
   @latest_comments = []
   @latest_stories = @stories.reverse

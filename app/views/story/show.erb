@@ -53,7 +53,7 @@
     <% @story.comments.order(created_at: :desc).each do |comment| %>
       <div class="comment">
         <div>
-          <p class="small"><%= comment.user.user_name %> - 
+        <p class="small"><a href='/user/<%= comment.user.user_name %>'><%= comment.user.user_name %></a>- 
             <span class="smaller"><%= distance_of_time_in_words(@story.created_at, Time.now, include_seconds: true) %> ago</span>
           </p>
         <p><%= comment.content %></p>
