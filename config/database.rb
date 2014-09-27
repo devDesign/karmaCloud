@@ -3,27 +3,13 @@ configure do
   if Sinatra::Application.development?
     ActiveRecord::Base.logger = Logger.new(STDOUT)
 
-    # set :database, {
-    #   adapter: "sqlite3",
-    #   database: "db/db.sqlite3"
-    # }
-  end
-  # else
-  #   ActiveRecord::Base.establish_connection(
-  #     adapter: 'postgresql',
-  #     encoding: 'unicode',
-  #     pool: 5,
-  #     database: 'd2tc9g7mqg58ls',
-  #     username: 'fdupvvlrphtfgn',
-  #     password: 'Uu-jSJyAQu4bKuQ32JoiPcN5eG',
-  #     host: 'ec2-54-83-204-85.compute-1.amazonaws.com',
-  #     port: 5432,
-  #     min_messages: 'error'
-  #   )
-
+    set :database, {
+      adapter: "sqlite3",
+      database: "db/db.sqlite3"
+    }
   # end
-
-  ActiveRecord::Base.establish_connection(
+  else
+    ActiveRecord::Base.establish_connection(
       adapter: 'postgresql',
       encoding: 'unicode',
       pool: 5,
@@ -34,6 +20,20 @@ configure do
       port: 5432,
       min_messages: 'error'
     )
+
+  end
+
+  # ActiveRecord::Base.establish_connection(
+  #     adapter: 'postgresql',
+  #     encoding: 'unicode',
+  #     pool: 5,
+  #     database: 'd2tc9g7mqg58ls',
+  #     username: 'fdupvvlrphtfgn',
+  #     password: 'Uu-jSJyAQu4bKuQ32JoiPcN5eG',
+  #     host: 'ec2-54-83-204-85.compute-1.amazonaws.com',
+  #     port: 5432,
+  #     min_messages: 'error'
+  #   )
 
 
   # Load all models from app/models, using autoload instead of require
