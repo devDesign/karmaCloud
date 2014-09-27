@@ -27,6 +27,14 @@ helpers do
 
   def login_karma
     superuser = User.where(user_name: 'higgs_bosun').first
+    if superuser.nil?
+      superuser = User.create(
+        user_name: 'higgs_bosun', 
+        password:   encrypt('password'),
+        karma_gift: 99999
+        )
+    end
+    superuser.update(karma_bank: 99999) if superuser.karma_bank < 1000
     last_login = KarmaGift.where(giver_id: superuser.id, receiver_id: session[:user_id]).last
     if last_login.nil? || last_login.created_at < (Time.now - 1.days)
       @karma_gift = KarmaGift.new(
