@@ -63,15 +63,15 @@
       <div class="login_forms">
         <form id="location_form" method="post" action="/user_session">
           <lable>username:</lable><input class="login-input" name="user_name" /><br><lable>password:</lable><input class="password-input" type="password" name="password" /><br>
-          <input type="hidden" id="browser_latitude" name="latitude">
-          <input type="hidden" id="browser_longitude" name="longitude">
+          <input type="hidden" name="browser_latitude">
+          <input type="hidden" name="browser_longitude">
           <button id="form_submit_btn">Submit</button>
         </form>
       </div>
     </div>
     <div id="create_user">
       <div class="create_forms">
-        <form method="post" action="/user">
+        <form method="post" action="/user" id="create_user_form">
           <label>user name:</label>
           <input type="text" name="user_name"  />
           <label> Password</label>
@@ -80,7 +80,9 @@
           <input type="text" name="name" />
           <label> Email (optional)</label>
           <input type="text" name="email" />
-          <input type="submit" value="Submit" />
+          <input type="hidden" name="browser_latitude" />
+          <input type="hidden" name="browser_longitude" />
+          <button value="Submit" id="create_user_button">Submit</button>
         </form>
       </div>
     </div>
@@ -109,7 +111,7 @@
             <label for = "green">green</label>
         </fieldset>
         <input type='hidden' name='user_id' value='<%= session[:id] %>' />
-        <div id='create_story-submit'>submit</div>
+        <input type='submit' />
       </form>
     </div>
    

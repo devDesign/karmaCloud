@@ -56,7 +56,7 @@ post "/user_session" do
   @user = User.where(user_name: params[:user_name]).first || User.new
   if login_valid?
     session[:user_id] = @user.id
-    @user.update(latitude: params[:latitude], longitude: params[:longitude])
+    @user.update(latitude: params[:browser_latitude], longitude: params[:browser_longitude])
     login_karma
     redirect request.referer
   else
@@ -88,7 +88,9 @@ post "/user" do
     user_name: params[:user_name],
     password:  encrypt(params[:password]),
     name:      params[:name],
-    email:     params[:email]
+    email:     params[:email],
+    latitude:  params[:browser_latitude],
+    longitude: params[:browser_longitude]
     )
   if @user.save
     session[:user_id] = @user.id
@@ -109,21 +111,23 @@ get "/story/:id" do
 end
 
 post "/story" do
-  @location_query
-  
+  @user = User.find(session[:user_id])
+
   @story = @user.stories.new(
     title:     params[:title],
     content:   params[:content],
     mood:      params[:mood],
     location:  params[:location],
     user_name: @user.user_name,
-    latitude: params[:browser_latitude],
-    longitude: params[:browser_longitude]
+    latitude:  @user.latitude,
+    longitude: @user.longitude
     )
+
   if @story.save
     redirect "/story/#{@story.id}"
   else
-    slim :'/story/new', layout: :layout
+    # erb :'/story/new', layout: :layout
+    @story.errors.full_message.join("||")
   end
 end
 

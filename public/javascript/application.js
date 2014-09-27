@@ -86,11 +86,16 @@ $(document).ready(function() {
   });
 
   //Register login submit button
-  // $("#form_submit_btn").on("click", function(e){
-  //   e.preventDefault();
-  //   console.log("calling method");
-  //   get_browser_location($("#location_form")[0]);
-  // });
+  $("#form_submit_btn").on("click", function(e){
+    e.preventDefault();
+    get_browser_location($("#location_form")[0]);
+  });
+
+  //Register login create user button
+  $("#create_user_button").on("click", function(e){
+    e.preventDefault();
+    get_browser_location($("#create_user_form")[0]);
+  });
 
 });
 
