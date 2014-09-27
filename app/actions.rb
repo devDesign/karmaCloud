@@ -21,12 +21,13 @@ helpers do
   end
 
   def login_valid?
-    return true unless @user.password != encrypt(params[:password])
+    return false if params[:password].blank?
+    true if @user.password == encrypt(params[:password])
   end
 
   def login_karma
     last_login = KarmaGift.where(giver_id: 4, receiver_id: session[:user_id]).last
-    if last_login.nil? || last_login.created_at > (Time.now - 1.days)
+    if last_login.nil? || last_login.created_at < (Time.now - 1.days)
       @karma_gift = KarmaGift.new(
       giver_id:    4, 
       receiver_id: session[:user_id],
@@ -43,8 +44,13 @@ get "/" do
   else
     @current_user = User.find(session[:user_id])
   end
-  @users = User.all
-  @stories = Story.limit(100)
+  @stories = Story.last(10)
+  @latest_comments = []
+  @latest_stories = @stories.reverse
+  @latest_stories.each do |story|
+    @latest_comments.push(story.comments.all)
+  end
+  @latest_comments = @latest_comments.reverse
   erb :index, :layout => :'../layout'
 
 end
@@ -52,7 +58,6 @@ end
 
 
 post "/user_session" do
-
   @user = User.where(user_name: params[:user_name]).first || User.new
   if login_valid?
     session[:user_id] = @user.id
@@ -60,7 +65,7 @@ post "/user_session" do
     login_karma
     redirect request.referer
   else
-    @login_errors = true
+    session[:login_error] = true
     redirect request.referer
   end
 end
@@ -77,12 +82,17 @@ end
 
 
 get "/user/:user_name" do
-  @current_user = User.find(session[:user_id])
+  if session[:user_id] == nil
+    @current_user = User.new
+  else
+    @current_user = User.find(session[:user_id])
+  end
   @user = User.where(user_name: params[:user_name]).first
   erb :'user/show', :layout => :'../layout'
 end
 
 post "/user" do
+  @stories = Story.limit(100)
   @users= User.all
   @user = User.new(
     user_name: params[:user_name],
@@ -96,15 +106,20 @@ post "/user" do
     session[:user_id] = @user.id
     redirect request.referer
   else
-    erb :index, :layout => :'../layout'
+    session[:create_user_errors]  = @user.errors.full_messages
+    redirect request.referer
   end
 end
 
 get "/story/:id" do
-  @current_user = User.find(session[:user_id])
+  if session[:user_id] == nil
+    @current_user = User.new
+  else
+    @current_user = User.find(session[:user_id])
+  end
   @user = User.new
   @users = User.all
-  @stories = Story.all
+  @stories = Story.limit(100)
   @story = Story.find(params[:id])
   @comment = Comment.new
   erb :'story/show', :layout => :'../layout'
@@ -145,15 +160,18 @@ post "/comment" do
 end
 
 post "/karmagift" do
-  @amount = 100
+  @users = User.all
+  @stories = Story.limit(100)
   @user = User.find(params[:id])
   @karma_gift = KarmaGift.new(
     giver_id:    session[:user_id], 
     receiver_id: params[:id],
-    amount:      @amount
+    amount:      params[:karma_amount]
     )
   if @karma_gift.save 
-    redirect "/user/#{@user.user_name}?gift_success=true"
+    session[:gift_amount]  = params[:karma_amount]
+    session[:gift_success] = true
+    redirect "/user/#{@user.user_name}"
   else
     erb :'user/show', :layout => :'../layout'
   end

@@ -10,20 +10,39 @@
     <h1><%= @story.title %> </h1>
     <p class="lead"><%= @story.content %></p>
     <small>
-      posted <%= distance_of_time_in_words(@story.created_at, Time.now, include_seconds: true) %> ago
+      posted by <%= @story.user_name %> <%= distance_of_time_in_words(@story.created_at, Time.now, include_seconds: true) %> ago
     </small>
+    <% if @user.id != session[:user_id] && session[:user_id] %>
+      <form method="post" action="/karmagift">
+        <div class='karma_ammount-input'>
+          <div class="input-group-small">
+            <input type="hidden" name="id" value="<%= @story.user.id %>">          
+            <input type="text" name="karma_amount" class="form-control" placeholder="Karma Amount">
+            <span class="input-group-btn">
+            <button class="btn btn-default" type="submit">Gift!</button>
+          </span>
+          </div>
+        </div>
+        <h4><small>Give this user some Karma</small></h4></label>
+      </form>
+    <% end %>
   </div>
   <div class="col-md-6 story-view-right">
     <div class="map">
-      <h1>I'm a map!</h1>
+      <iframe
+        width="600"
+        height="450"
+        frameborder="0" style="border:0"
+        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDh7gQpc44MXI-1hxqphb4VJpg92xtjgig
+          &q=<%= @story.latitude %>,<%= @story.longitude %>  
+          &zoom=15">
+      </iframe>
     </div>
   </div>
   <hr class="col-md-12">
   <div class="col-md-6 comments">
     <form method="post" action="/comment" class="comment-form">
-      <textarea name="content" maxlength="500" rows="3" placeholder="Enter your comment here">
-        <%= @comment.content %>
-      </textarea>
+      <textarea name="content" maxlength="500" rows="4" placeholder="Enter your comment here"><%= @comment.content %></textarea>
       <input type="hidden" name="story_id" value="<%= @story.id %>">
       <% if session[:user_id] %>
       <input type="submit" class="btn btn-default">  

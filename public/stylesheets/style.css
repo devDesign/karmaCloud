@@ -1,3 +1,12 @@
+.alert {
+  position: fixed;
+  top: 47px;
+  left: 0;
+  right: 0;
+  z-index: 7000;
+  width: 40%;
+  margin: 0 auto; }
+
 #menu {
   position: absolute;
   width: 100%;
@@ -13,6 +22,12 @@
       margin: 0px;
       margin-right: 5px;
       display: inline; }
+  #menu .logout {
+    color: #428bca; }
+  #menu .logout:hover {
+    cursor: pointer;
+    color: #2a6496;
+    text-decoration: underline; }
 
 .horizontal_panel {
   padding: 5px;
@@ -42,6 +57,8 @@
   #title h1 {
     padding: 0px;
     margin: 0px; }
+  #title .karma_cloud-title {
+    color: black; }
 
 .top_stories {
   position: relative;
@@ -110,6 +127,12 @@
   margin: auto;
   overflow: auto;
   height: 70vh; }
+  .story_feed .comment-link {
+    color: #428bca; }
+  .story_feed .comment-link:hover {
+    cursor: pointer;
+    color: #2a6496;
+    text-decoration: underline; }
 
 /* User Profile page */
 .user-profile-left {
@@ -133,6 +156,8 @@
     min-width: 210px; }
     .user-profile-left .inner-bar div {
       margin: 20px 0; }
+    .user-profile-left .inner-bar .input-group {
+      margin-bottom: 0; }
   .user-profile-left .user-avatar {
     border-radius: 100px; }
 
@@ -146,7 +171,10 @@
     margin: 20px auto;
     border: 1px solid #ccc;
     padding: 15px;
-    border-radius: 4px; }
+    border-radius: 4px;
+    cursor: pointer; }
+    .user-profile-right .event:hover {
+      background-color: #d9edf7; }
     .user-profile-right .event p {
       color: #777; }
 
@@ -167,12 +195,15 @@
   padding: 0px 20px; }
   .story-view-right .map {
     width: 100%;
-    height: 400px;
+    height: 450px;
     border: 1px solid #ccc; }
 
 .comments {
   margin-top: 20px; }
   .comments textarea {
     width: 100%; }
+
+.karma_ammount-input {
+  width: 25%; }
 
 /*# sourceMappingURL=style.css.map */
