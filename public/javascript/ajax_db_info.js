@@ -35,7 +35,7 @@ function populate_accordion() {
 
     $title  = $('<h3></h3>').text(stories[i].title);
     $content = $("<p></p>").text(stories[i].content);
-    $user_id = $("<p></p>").text(stories[i].user_id);
+    $user_id = $("<p></p>").text(stories[i].user_name);
     $created_at = $("<p></p>").text(stories[i].created_at);
 
     $div = $("<div></div>").append($content, [$user_id, $created_at]);

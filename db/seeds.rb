@@ -19,13 +19,13 @@ FactoryGirl.define do
   end
 
   factory :story do
-    title        Faker::Lorem.sentence
-    content      Faker::Lorem.paragraph
+    title                 Faker::Lorem.sentence
+    content               Faker::Lorem.paragraph
     sequence(:latitude)   {Faker::Address.latitude}
     sequence(:longitude)  {Faker::Address.longitude}
-    mood         {["green","red"].sample}
+    mood                  {["green","red"].sample}
+    sequence(:user_name)  {Faker::Name.name}
     user
-
     factory :story_with_comments do 
       after(:create) do |story, evaluator|
         create_list(:comment, 5, story: story, user: story.user)
