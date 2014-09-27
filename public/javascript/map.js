@@ -131,5 +131,17 @@ function initialize() {
   };
 
   var marker_clusterer = new MarkerClusterer(map, markers, clusterOptions);
+
+  toggle_map();
+}
+
+function toggle_map(){
+  console.log($('#map-container'));
+  $('#map-container').children().each(function(){
+    $(this).toggleClass('hidden');
+    console.log("switch");
+  });
+
+
 }
 
