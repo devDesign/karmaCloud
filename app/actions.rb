@@ -107,6 +107,7 @@ get "/story/:id" do
     @current_user = User.find(session[:user_id])
   end
   @user = User.new
+
   @story = Story.find(params[:id])
   @comment = Comment.new
   erb :'story/show', :layout => :'../layout'

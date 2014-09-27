@@ -57,6 +57,8 @@
   #title h1 {
     padding: 0px;
     margin: 0px; }
+  #title .karma_cloud-title {
+    color: black; }
 
 .top_stories {
   position: relative;
@@ -200,5 +202,8 @@
   margin-top: 20px; }
   .comments textarea {
     width: 100%; }
+
+.karma_ammount-input {
+  width: 25%; }
 
 /*# sourceMappingURL=style.css.map */
