@@ -10,7 +10,7 @@
     <h1><%= @story.title %> </h1>
     <p class="lead"><%= @story.content %></p>
     <small>
-      posted by <%= @story.user_name %> <%= distance_of_time_in_words(@story.created_at, Time.now, include_seconds: true) %> ago
+      posted by <a href='/user/<%= @story.user_name %>'><%= @story.user_name %></a> <%= distance_of_time_in_words(@story.created_at, Time.now, include_seconds: true) %> ago
     </small>
     <% if @story.user.id != session[:user_id] && session[:user_id] %>
       <form method="post" action="/karmagift">
