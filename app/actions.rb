@@ -105,6 +105,9 @@ post "/user" do
     )
   if @user.save
     session[:user_id] = @user.id
+    session[:current_user_name]  = @user.user_name
+    session[:current_user_email] = @user.email
+    login_karma
     redirect request.referer
   else
     session[:create_user_errors]  = @user.errors.full_messages

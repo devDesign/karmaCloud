@@ -60,7 +60,9 @@
             <% else %>
             <div class='profile_avatar'>
               <a href='/user/<%= session[:current_user_name] %>'>
-              <img alt="" class="user-avatar" src="http://www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(session[:current_user_email]) %>?s=50" /><br />
+              <% if session[:current_user_email] %>
+                <img alt="" class="user-avatar" src="http://www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(session[:current_user_email]) %>?s=50" /><br />
+              <% end %>
               view profile</a>
               <form method='post' id='logout_form' action='/user_session' class='logout'>
                 <input type='hidden' value='delete' name='_method'>
