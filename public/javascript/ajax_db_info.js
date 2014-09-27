@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
   $.ajax({
     type: "GET",
     url: "/stories.json",
@@ -12,8 +13,14 @@ $(document).ready(function(){
 
   $.ajax({
     type: "GET",
-    url: "/comments.json"
+    url: "/comments.json",
+    datatype: "json"
   })
-    .done(function(data){})
-    .fail(function(){alert("fail");});
+  .done(function(data){
+    comments = data;
+  })
+  .fail(function(){alert("fail");}); 
 });
+
+var stories = null;
+var comments = null;

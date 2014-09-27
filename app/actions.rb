@@ -14,6 +14,11 @@ get '/stories.json' do
   json @stories
 end
 
+get '/comments.json' do
+  @comments = Comment.all;
+  json @comments
+end
+
 helpers do
 
   def encrypt(input)

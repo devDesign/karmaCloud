@@ -1,16 +1,3 @@
- $(function(){
-  $.ajax({
-    type: "GET",
-    url: "/stories.json",
-    datatype: "json"
-  })
-  .done(function(data){
-    stories = data;
-    loadScript();
-  })
-
-  .fail(function(){alert("fail");}); 
-});
 
 var stories = null;
 var map_position = {};
@@ -136,10 +123,8 @@ function initialize() {
 }
 
 function toggle_map(){
-  console.log($('#map-container'));
   $('#map-container').children().each(function(){
     $(this).toggleClass('hidden');
-    console.log("switch");
   });
 
 
