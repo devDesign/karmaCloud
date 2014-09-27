@@ -50,19 +50,21 @@
   width: 100%; }
 
 #title {
+  width: 420px;
   position: relative;
   top: 0px;
   padding: 0px;
   padding-bottom: 5px; }
   #title h1 {
     padding: 0px;
-    margin: 0px; }
+    margin: 0px;
+    width: 300px; }
   #title .karma_cloud-title {
     color: black; }
 
 .top_stories {
   position: relative;
-  min-height: 70vh;
+  max-height: 70vh;
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff), to(#d2d2d2));
   background: -webkit-linear-gradient(top, #d2d2d2, #ffffff);
   background: -moz-linear-gradient(top, #d2d2d2, #ffffff);
@@ -135,7 +137,7 @@
 .story {
   position: relative;
   width: 100%;
-  height: 150px;
+  height: 200px;
   border-style: solid;
   border-size: 1px;
   border-color: #b7b7b7;
@@ -203,7 +205,8 @@
 .profile_avatar {
   position: absolute;
   top: 0px;
-  right: 0px; }
+  right: 0px;
+  text-align: right; }
 
 /* Story view page */
 .story-view-left {
@@ -227,4 +230,7 @@
 .karma_ammount-input {
   width: 25%; }
 
-/*# sourceMappingURL=style.css.map */
+.karma_count {
+  position: absolute;
+  bottom: 6px;
+  right: 0px; }

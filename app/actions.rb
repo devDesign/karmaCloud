@@ -26,7 +26,7 @@ helpers do
   end
 
   def login_karma
-    superuser = User.where(user_name: 'higgs_bosun').first
+    superuser = User.find(666)
     last_login = KarmaGift.where(giver_id: superuser.id, receiver_id: session[:user_id]).last
     if last_login.nil? || last_login.created_at < (Time.now - 1.days)
       @karma_gift = KarmaGift.new(
