@@ -22,6 +22,12 @@
       margin: 0px;
       margin-right: 5px;
       display: inline; }
+  #menu .logout {
+    color: #428bca; }
+  #menu .logout:hover {
+    cursor: pointer;
+    color: #2a6496;
+    text-decoration: underline; }
 
 .horizontal_panel {
   padding: 5px;
@@ -51,6 +57,8 @@
   #title h1 {
     padding: 0px;
     margin: 0px; }
+  #title .karma_cloud-title {
+    color: black; }
 
 .top_stories {
   position: relative;
@@ -119,6 +127,12 @@
   margin: auto;
   overflow: auto;
   height: 70vh; }
+  .story_feed .comment-link {
+    color: #428bca; }
+  .story_feed .comment-link:hover {
+    cursor: pointer;
+    color: #2a6496;
+    text-decoration: underline; }
 
 /* User Profile page */
 .user-profile-left {
@@ -188,5 +202,8 @@
   margin-top: 20px; }
   .comments textarea {
     width: 100%; }
+
+.karma_ammount-input {
+  width: 25%; }
 
 /*# sourceMappingURL=style.css.map */

@@ -12,6 +12,20 @@
     <small>
       posted by <%= @story.user_name %> <%= distance_of_time_in_words(@story.created_at, Time.now, include_seconds: true) %> ago
     </small>
+    <% if @user.id != session[:user_id] && session[:user_id] %>
+      <form method="post" action="/karmagift">
+        <div class='karma_ammount-input'>
+          <div class="input-group-small">
+            <input type="hidden" name="id" value="<%= @story.user.id %>">          
+            <input type="text" name="karma_amount" class="form-control" placeholder="Karma Amount">
+            <span class="input-group-btn">
+            <button class="btn btn-default" type="submit">Gift!</button>
+          </span>
+          </div>
+        </div>
+        <h4><small>Give this user some Karma</small></h4></label>
+      </form>
+    <% end %>
   </div>
   <div class="col-md-6 story-view-right">
     <div class="map">
