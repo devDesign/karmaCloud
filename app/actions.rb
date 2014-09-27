@@ -27,7 +27,7 @@ helpers do
 
   def login_karma
     last_login = KarmaGift.where(giver_id: 4, receiver_id: session[:user_id]).last
-    if last_login.nil? || last_login.created_at > (Time.now - 1.days)
+    if last_login.nil? || last_login.created_at < (Time.now - 1.days)
       @karma_gift = KarmaGift.new(
       giver_id:    4, 
       receiver_id: session[:user_id],
