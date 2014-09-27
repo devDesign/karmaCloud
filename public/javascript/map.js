@@ -1,3 +1,12 @@
+  String.prototype.supplant = function (o) {
+    return this.replace(/{([^{}]*)}/g,
+        function (a, b) {
+            var r = o[b];
+            return typeof r === 'string' || typeof r === 'number' ? r : a;
+        }
+    );
+};
+
   $(function(){
   $.ajax({
     type: "GET",
@@ -55,9 +64,14 @@ function showError(error) {
 }
 
 
+function format_story_content(story){
+  content = "";
+  return null;
+}
+
 function create_info_box(story) {
   return new google.maps.InfoWindow({ 
-    content: story.content, 
+    content: format_story_content(story), 
     maxWidth: 300 
   });
 }
