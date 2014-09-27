@@ -1,13 +1,4 @@
-  String.prototype.supplant = function (o) {
-    return this.replace(/{([^{}]*)}/g,
-        function (a, b) {
-            var r = o[b];
-            return typeof r === 'string' || typeof r === 'number' ? r : a;
-        }
-    );
-};
-
-  $(function(){
+ $(function(){
   $.ajax({
     type: "GET",
     url: "/stories.json",
@@ -15,7 +6,7 @@
   })
   .done(function(data){
     stories = data;
-    getLocation();
+    loadScript();
   })
 
   .fail(function(){alert("fail");}); 
@@ -26,6 +17,14 @@ var map_position = {};
 var green_icon = 'green_map_marker.png'
 var red_icon = 'red_map_marker.png'
 var yellow_icon = 'yellow_map_marker.png'
+
+function loadScript() {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&' +
+      'callback=getLocation';
+  document.body.appendChild(script);
+}
 
 
 function getLocation() {
@@ -65,14 +64,20 @@ function showError(error) {
 
 
 function format_story_content(story){
-  content = "";
-  return null;
+  content = "<div style='overflow:visible;'><h1>" +
+            story.title +
+            "</h1>" +
+            "<p style='font-size: 150%;'>"+
+            story.content +
+            "</p>"+
+            "</div>";
+  return content;
 }
 
 function create_info_box(story) {
   return new google.maps.InfoWindow({ 
     content: format_story_content(story), 
-    maxWidth: 300 
+    maxWidth: 1000 
   });
 }
 
@@ -100,10 +105,9 @@ function create_markers(map){
 }
 
 function initialize() {
-
   var mapOptions = {
     center: map_position,
-    zoom: 2, draggable: true, 
+    zoom: 3, draggable: true, 
     zoomControl: true, 
     scrollwheel: false, 
     disableDoubleClickZoom: false

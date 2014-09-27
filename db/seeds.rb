@@ -1,15 +1,3 @@
-latitudes = []
-longitudes = []
-
-
-1000.times do 
-  random_position = RandomLocation.near_by(49.282102, -123.107880, 5_000_000) 
-
-  latitudes << random_position[0]
-  longitudes << random_position[1]
-end
-
-
 
 FactoryGirl.define do
   factory :user do
