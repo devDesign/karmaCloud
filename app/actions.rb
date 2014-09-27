@@ -44,15 +44,8 @@ get "/" do
   else
     @current_user = User.find(session[:user_id])
   end
-  @stories = Story.last(10)
-  @latest_comments = []
-  @latest_stories = @stories.reverse
-  @latest_stories.each do |story|
-    @latest_comments.push(story.comments.all)
-  end
-  @latest_comments = @latest_comments.reverse
-  erb :index, :layout => :'../layout'
 
+  erb :index, :layout => :'../layout'
 end
 
 

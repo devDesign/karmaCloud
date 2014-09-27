@@ -10,7 +10,10 @@ $(document).ready(function(){
   })
   .fail(function(){alert("fail");}); 
 
-  $.ajax()
+  $.ajax({
+    type: "GET",
+    url: "/comments.json"
+  })
     .done(function(data){})
-    .fail(function(){});
+    .fail(function(){alert("fail");});
 });
