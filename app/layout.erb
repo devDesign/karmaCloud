@@ -17,7 +17,7 @@
     <script src="/javascript/login_location.js"></script>
     <script src="/javascript/application.js"></script>  
 
-    <title>Karma Cloud</title>
+    <title>karmaCloud</title>
   </head>
   <body>
     <!-- login and create user errors -->
@@ -74,11 +74,11 @@
       <div class="container">
         <div id="title">
           <h1>
-            <a href='/' class='karma_cloud-title'>Karma Cloud</a>
+            <a href='/' class='karma_cloud-title'>karmaCloud</a>
           </h1>
           <% if session[:user_id]!=nil %>
             <div class='karma_count'>
-              <small>Karma Level:<%= @current_user.karma_total %> Karma Bank:<%= @current_user.karma_bank %></small>    
+              <small>karmaLevel:<%= @current_user.karma_total %> karmaBank:<%= @current_user.karma_bank %></small>    
             </div>
           <% end %>
 
