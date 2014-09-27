@@ -26,10 +26,11 @@ helpers do
   end
 
   def login_karma
-    last_login = KarmaGift.where(giver_id: 4, receiver_id: session[:user_id]).last
+    superuser = User.where(user_name: 'higgs_bosun').first
+    last_login = KarmaGift.where(giver_id: superuser.id, receiver_id: session[:user_id]).last
     if last_login.nil? || last_login.created_at < (Time.now - 1.days)
       @karma_gift = KarmaGift.new(
-      giver_id:    4, 
+      giver_id:    superuser.id, 
       receiver_id: session[:user_id],
       amount:      100
       )
@@ -61,6 +62,8 @@ post "/user_session" do
   @user = User.where(user_name: params[:user_name]).first || User.new
   if login_valid?
     session[:user_id] = @user.id
+    session[:current_user_name]  = @user.user_name
+    session[:current_user_email] = @user.email
     @user.update(latitude: params[:browser_latitude], longitude: params[:browser_longitude])
     login_karma
     redirect request.referer
@@ -92,8 +95,6 @@ get "/user/:user_name" do
 end
 
 post "/user" do
-  @stories = Story.limit(100)
-  @users= User.all
   @user = User.new(
     user_name: params[:user_name],
     password:  encrypt(params[:password]),
@@ -118,8 +119,6 @@ get "/story/:id" do
     @current_user = User.find(session[:user_id])
   end
   @user = User.new
-  @users = User.all
-  @stories = Story.limit(100)
   @story = Story.find(params[:id])
   @comment = Comment.new
   erb :'story/show', :layout => :'../layout'
@@ -160,8 +159,6 @@ post "/comment" do
 end
 
 post "/karmagift" do
-  @users = User.all
-  @stories = Story.limit(100)
   @user = User.find(params[:id])
   @karma_gift = KarmaGift.new(
     giver_id:    session[:user_id], 

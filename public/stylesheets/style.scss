@@ -239,6 +239,10 @@ padding: 0px;
 /* Story view page */
 .story-view-left {
   padding-left: 0;
+
+  .input-group {
+    width: 200px;
+  }
 }
 .story-view-right {
   border-left: 1px solid #eee;

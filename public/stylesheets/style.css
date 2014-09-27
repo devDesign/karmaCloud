@@ -189,6 +189,8 @@
 /* Story view page */
 .story-view-left {
   padding-left: 0; }
+  .story-view-left .input-group {
+    width: 200px; }
 
 .story-view-right {
   border-left: 1px solid #eee;
