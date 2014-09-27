@@ -53,6 +53,8 @@ helpers do
 end
 
 get "/" do
+  @date = DateTime.now 
+  @date = @date.strftime("%x")
   if session[:user_id] == nil
     @user = User.new
   else
