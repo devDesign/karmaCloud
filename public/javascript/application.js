@@ -73,11 +73,11 @@ $(document).ready(function() {
     event.preventDefault();
   });
 
-  $(function() {
-    $( "#accordion" ).accordion({
-      collapsible: true
-    });
-  });
+  // $(function() {
+  //   $( "#accordion" ).accordion({
+  //     collapsible: true
+  //   });
+  // });
   
   $(function() {
     $( "#top_5" ).accordion({

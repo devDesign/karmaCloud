@@ -10,7 +10,7 @@ get "/map" do
 end
 
 get '/stories.json' do
-  @stories = Story.where("created_at > ?", Date.yesterday)
+  @stories = Story.where("created_at > ?", Date.yesterday).order("created_at DESC")
   json @stories
 end
 

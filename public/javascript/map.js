@@ -1,5 +1,4 @@
 
-var stories = null;
 var map_position = {};
 var green_icon = 'green_map_marker.png'
 var red_icon = 'red_map_marker.png'
