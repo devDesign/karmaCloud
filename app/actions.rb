@@ -31,7 +31,7 @@ helpers do
       superuser = User.create(
         user_name: 'higgs_bosun', 
         password:   encrypt('password'),
-        karma_gift: 99999
+        karma_bank: 99999
         )
     end
     superuser.update(karma_bank: 99999) if superuser.karma_bank < 1000
