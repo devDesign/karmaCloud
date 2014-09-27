@@ -21,7 +21,8 @@ helpers do
   end
 
   def login_valid?
-    return true unless @user.password != encrypt(params[:password])
+    return false if params[:password].blank?
+    true if @user.password == encrypt(params[:password])
   end
 
   def login_karma
@@ -57,14 +58,14 @@ end
 
 
 post "/user_session" do
-
   @user = User.where(user_name: params[:user_name]).first || User.new
   if login_valid?
     session[:user_id] = @user.id
+    @user.update(latitude: params[:latitude], longitude: params[:longitude])
     login_karma
     redirect request.referer
   else
-    @login_errors = true
+    session[:login_error] = true
     redirect request.referer
   end
 end
@@ -81,12 +82,17 @@ end
 
 
 get "/user/:user_name" do
-  @current_user = User.find(session[:user_id])
+  if session[:user_id] == nil
+    @current_user = User.new
+  else
+    @current_user = User.find(session[:user_id])
+  end
   @user = User.where(user_name: params[:user_name]).first
   erb :'user/show', :layout => :'../layout'
 end
 
 post "/user" do
+  @stories = Story.limit(100)
   @users= User.all
   @user = User.new(
     user_name: params[:user_name],
@@ -98,16 +104,20 @@ post "/user" do
     session[:user_id] = @user.id
     redirect request.referer
   else
-    erb :index, :layout => :'../layout'
+    session[:create_user_errors]  = @user.errors.full_messages
+    redirect request.referer
   end
 end
 
 get "/story/:id" do
-  if session[:user_id] != nil
+  if session[:user_id] == nil
+    @current_user = User.new
+  else
     @current_user = User.find(session[:user_id])
   end
   @user = User.new
-
+  @users = User.all
+  @stories = Story.limit(100)
   @story = Story.find(params[:id])
   @comment = Comment.new
   erb :'story/show', :layout => :'../layout'
@@ -147,7 +157,7 @@ end
 
 post "/karmagift" do
   @users = User.all
-  @stories = Story.all
+  @stories = Story.limit(100)
   @user = User.find(params[:id])
   @karma_gift = KarmaGift.new(
     giver_id:    session[:user_id], 
