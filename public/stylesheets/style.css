@@ -146,8 +146,7 @@
 .story_feed {
   width: 80%;
   margin: auto;
-  overflow: auto;
-  height: 70vh; }
+  min-height: 70vh; }
   .story_feed .comment-link {
     color: #428bca; }
   .story_feed .comment-link:hover {

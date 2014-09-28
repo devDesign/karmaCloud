@@ -9,6 +9,8 @@ get "/map" do
   erb :'map_test'
 end
 
+
+
 get '/stories.json' do
   @stories = Story.where("created_at > ?", Date.yesterday)
   json @stories
@@ -39,6 +41,25 @@ helpers do
   end
 end
 
+post "/content_demo" do
+    @date = DateTime.now 
+  @date = @date.strftime("%x")
+  if session[:user_id] == nil
+    @user = User.new
+  else
+    @current_user = User.find(session[:user_id])
+  end
+  @stories = Story.last(10)
+  @latest_comments = []
+  @latest_stories = @stories.reverse
+  @latest_stories.each do |story|
+    @latest_comments.push(story.comments.all)
+  end
+  @latest_comments = @latest_comments.reverse
+
+  erb :demo_content
+end
+
 get "/" do
   @date = DateTime.now 
   @date = @date.strftime("%x")
@@ -57,7 +78,17 @@ get "/" do
   erb :index, :layout => :'../layout'
 
 end
-
+get "/story_feed" do
+  @stories= Story.all 
+  @latest_comments = []
+  @latest_stories = @stories.reverse
+  @latest_stories.each do |story|
+    @latest_comments.push(story.comments.all)
+  end
+  @latest_comments = @latest_comments.reverse
+ 
+  erb :'story_feed'
+end
 
 
 post "/user_session" do

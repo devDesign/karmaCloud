@@ -1,0 +1,15 @@
+<% 100.times do %>
+  <% @stories.each_with_index do |story,index| %>
+  <% if story.mood == 'red' %>
+  <h3 class='red_story'><%= story.title %></h3>
+  <% else %>
+  <h3 class='green_story'><%= story.title %></h3>
+  <% end %>
+  <div>
+    <p><%= story.content %></p>
+    <p>posted by <%= story.user_name %> </p>
+    <p><%= distance_of_time_in_words(story.created_at, Time.now, include_seconds: true) %> ago</p>
+    <p><a href='/story/<%= story.id %>' class='comment-link'>show <%= @latest_comments[index].count %> comments</a>
+  </div>
+  <% end %>
+<% end %>
