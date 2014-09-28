@@ -50,8 +50,10 @@
       <div class='container'>
   <div id='menu'>
           <ul>
-            <li><a href='#' id='create_story-link'>create story</a></li>
-            <% if session[:user_id] == nil %>
+            <% if session[:user_id] %>
+              <li><a href='#' id='create_story-link'>create story</a></li>
+            <% end %>
+            <% if !session[:user_id] %>
               <li><a href='#' id='login-link'>login</a></li>
               <li><a href='#' id='create_user-link'>signup</a></li>
             <% else %>
