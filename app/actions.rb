@@ -168,8 +168,8 @@ post "/story" do
   if @story.save
     redirect "/story/#{@story.id}"
   else
-    # erb :'/story/new', layout: :layout
-    @story.errors.full_message.join("||")
+    session[:create_story_errors] = @story.errors.full_messages
+    redirect request.referer
   end
 end
 
