@@ -1,8 +1,15 @@
 <div id="box">
 <% 10.times do %>
-<div class="cloud_box" style="position: relative;" ><span class="glyphicon glyphicon-cloud" ></span></div>
+<div class="cloud_box_last" id="logo" style="position: relative;" ><span class="glyphicon glyphicon-cloud" ></span></div>
 <% end %>
 </div>
+<script>
+
+
+   TweenMax.staggerTo(logo, 4, {x: Math.random()*100+1, y:-2000,opacity:0},0.1,0.3);
+
+
+</script>
 <% @stories= @stories.reverse %>
 <% @stories.each_with_index do |story,index| %>
 

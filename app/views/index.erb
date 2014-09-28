@@ -1,23 +1,29 @@
 <div id="box">
 <% 10.times do %>
-<div class="cloud_box" ><span class="glyphicon glyphicon-cloud" ></span></div>
+<div class="cloud_box" id="cloud"><span class="glyphicon glyphicon-cloud" ></span></div>
 <% end %>
 </div>
 
 
+<script>
+TweenLite.to(cloud, 3, {transform-x:10+px, scaleX:0.8});
+</script>
 
 <div class='fixed_title_menu' data-40='top:0px;opacity:0;' data-75='top:0px;opacity:1;'>
-
-
-
-<div class="horizontal_panel">
-      <div class="top_story">
-        <h2>
-        </span>theCloud  <small> <%= @date %> </small>
-        </h2>
-        <div class='the_cloud'><span class="glyphicon glyphicon-cloud" ></span></div>
-      </div>
+  <div class="horizontal_panel">
+    <div class="top_story">
+      <h2>
+      </span>karmaCloud  <small> <%= @date %> </small>
+      </h2>
+      <div class='karma_count_fixed'>
+              <small>karmaLevel:<%= @current_user.karma_total %> karmaBank:<%= @current_user.karma_bank %></small>    
+            </div>
+      <div class='the_cloud'><span class="glyphicon glyphicon-cloud" ></span></div>
+      <div class='the_user'><span class="glyphicon glyphicon-user" ></span></div>
+      <div class='the_post'><span class="glyphicon glyphicon-share-alt" ></span></div>
+      
     </div>
+  </div>
 </div>
     
     <div class="horizontal_panel">
