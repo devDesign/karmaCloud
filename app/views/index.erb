@@ -1,4 +1,15 @@
+<div id="box">
+<% 10.times do %>
+<div class="cloud_box" ><span class="glyphicon glyphicon-cloud" ></span></div>
+<% end %>
+</div>
+
+
+
 <div class='fixed_title_menu' data-40='top:0px;opacity:0;' data-75='top:0px;opacity:1;'>
+
+
+
 <div class="horizontal_panel">
       <div class="top_story">
         <h2>
@@ -55,6 +66,7 @@ $(function(){
        $('#content').stopScrollPagination();
     },
     'afterLoad': function(elementsLoaded){ // after loading content, you can use this function to animate your new elements
+       $('.cloud_box').fadeIn();
        $('#content').scrollPagination();
        $('#loading').fadeOut();
        var i = 0;

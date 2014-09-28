@@ -1,4 +1,8 @@
-
+<div id="box">
+<% 10.times do %>
+<div class="cloud_box" style="position: relative;" ><span class="glyphicon glyphicon-cloud" ></span></div>
+<% end %>
+</div>
 <% @stories= @stories.reverse %>
 <% @stories.each_with_index do |story,index| %>
 

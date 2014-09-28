@@ -273,4 +273,53 @@
   top: 11px;
   font-size: 1em; }
 
+.cloud_box {
+  transform-style: preserve-3d;
+  z-index: -9999;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  opacity: 22%;
+  color: #f3f3f3; }
+  .cloud_box:nth-child(1) {
+    top: 10vh;
+    left: 63vw;
+    transform: scale(3); }
+  .cloud_box:nth-child(2) {
+    top: 95vh;
+    left: 64vw;
+    transform: scale(20); }
+  .cloud_box:nth-child(3) {
+    top: 66vh;
+    left: 2vw;
+    transform: scale(6); }
+  .cloud_box:nth-child(4) {
+    top: 58vh;
+    left: 21vw;
+    transform: scale(14); }
+  .cloud_box:nth-child(5) {
+    top: 13vh;
+    left: 54vw;
+    transform: scale(1); }
+  .cloud_box:nth-child(6) {
+    top: 21vh;
+    left: 55vw;
+    transform: scale(11); }
+  .cloud_box:nth-child(7) {
+    top: 6vh;
+    left: 74vw;
+    transform: scale(4); }
+  .cloud_box:nth-child(8) {
+    top: 47vh;
+    left: 51vw;
+    transform: scale(12); }
+  .cloud_box:nth-child(9) {
+    top: 5vh;
+    left: 3vw;
+    transform: scale(11); }
+  .cloud_box:nth-child(10) {
+    top: 85vh;
+    left: 32vw;
+    transform: scale(12); }
+
 /*# sourceMappingURL=style.css.map */

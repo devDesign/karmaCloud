@@ -339,3 +339,22 @@ body{
   top:11px;
   font-size: 1em;
 }
+
+.cloud_box {
+  transform-style: preserve-3d; 
+  z-index: -9999;
+  position: absolute;
+  width: 20px; height: 20px;
+  opacity:22%;
+  color:$white;
+
+  @for $i from 0 to 10 {
+    &:nth-child(#{$i + 1}) {
+      top: random(100) + vh;
+      left: random(80) + vw;
+      transform: scale(random(22));
+    }}
+
+}
+
+ 
