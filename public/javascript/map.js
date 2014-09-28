@@ -107,7 +107,7 @@ function create_markers(map){
 function initialize() {
   var mapOptions = {
     center: map_position,
-    zoom: 3, draggable: true, 
+    zoom: 13, draggable: true, 
     zoomControl: true, 
     scrollwheel: false, 
     disableDoubleClickZoom: false
