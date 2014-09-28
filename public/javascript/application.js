@@ -97,6 +97,10 @@ $(document).ready(function() {
     get_browser_location($("#create_user_form")[0]);   
   });    
 
+  var s = skrollr.init();
+
+
+
 });
 
 

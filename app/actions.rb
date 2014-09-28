@@ -54,19 +54,21 @@ helpers do
   end
 end
 
-post "/content_demo" do
-    @date = DateTime.now 
-  @date = @date.strftime("%x")
-  @stories = Story.all
-  @story = @stories.last
-  erb :demo_content
-end
 post "/story_feed" do
-    @date = DateTime.now 
+  @date = DateTime.now 
   @date = @date.strftime("%x")
   @stories = Story.all
   @story = @stories.last
   erb :story_feed
+end
+
+
+post "/last_story_feed" do
+  @date = DateTime.now 
+  @date = @date.strftime("%x")
+  @stories = Story.all
+  @story = @stories.last
+  erb :last_story_feed
 end
 
 get "/" do

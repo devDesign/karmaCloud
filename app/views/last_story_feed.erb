@@ -2,10 +2,11 @@
 <% @stories= @stories.reverse %>
 <% @stories.each_with_index do |story,index| %>
 
+  <% if story == @story %>
   <div style="opacity:0;-moz-opacity: 0;filter: alpha(opacity=0);">
     <div class='story'>
     <div class="horizontal_panel">
-    <h5 class="story_user_title"><%= story.user_name %></h5>
+    <h5><%= story.user_name %></h5>
     </div>
     <div class="story_wrapper">
     <div>
@@ -28,5 +29,6 @@
   </div>
 
 
+  <% end %>
 
 <% end %>

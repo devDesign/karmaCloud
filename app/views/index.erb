@@ -1,4 +1,14 @@
-
+<div class='fixed_title_menu' data-40='top:0px;opacity:0;' data-75='top:0px;opacity:1;'>
+<div class="horizontal_panel">
+      <div class="top_story">
+        <h2>
+        </span>theCloud  <small> <%= @date %> </small>
+        </h2>
+        <div class='the_cloud'><span class="glyphicon glyphicon-cloud" ></span></div>
+      </div>
+    </div>
+</div>
+    
     <div class="horizontal_panel">
       <div class="top_story">
         <h2>
@@ -10,7 +20,7 @@
   </div>
 </div>
 
-<div id="map-container">
+<div id="map-container" data-400='top:0px;opacity:1;' data-600='top:-1000px;opacity:0; transform-y: 100px;'>
   <div id="map-loading"></div>
   <div class="hidden map_canvas" id="map-canvas"></div>
 </div>
@@ -26,19 +36,48 @@
 <script>
 $(function(){
   $('#content').scrollPagination({
-    'contentPage': '/content_demo', // the url you are fetching the results
+    'contentPage': '/story_feed', // the url you are fetching the results
     'contentData': {}, // these are the variables you can pass to the request, for example: children().size() to know which page you are
     'scrollTarget': $(window), // who gonna scroll? in this example, the full window
-    'heightOffset': 300, // it gonna request when scroll is 10 pixels before the page ends
+    'heightOffset': 1, // it gonna request when scroll is 10 pixels before the page ends
     'beforeLoad': function(){ // before load function, you can display a preloader div
       $('#loading').fadeIn(); 
+       $('#content').stopScrollPagination();
     },
     'afterLoad': function(elementsLoaded){ // after loading content, you can use this function to animate your new elements
+         $('#content').scrollPagination({
+    'contentPage': '/last_story_feed', // the url you are fetching the results
+    'contentData': {}, // these are the variables you can pass to the request, for example: children().size() to know which page you are
+    'scrollTarget': $(window), // who gonna scroll? in this example, the full window
+    'heightOffset': 1, // it gonna request when scroll is 10 pixels before the page ends
+    'beforeLoad': function(){ // before load function, you can display a preloader div
+      $('#loading').fadeIn(); 
+       $('#content').stopScrollPagination();
+    },
+    'afterLoad': function(elementsLoaded){ // after loading content, you can use this function to animate your new elements
+       $('#content').scrollPagination();
        $('#loading').fadeOut();
        var i = 0;
        $(elementsLoaded).fadeInWithDelay();
        if ($('#content').children().size() > 1){ // if more than 100 results already loaded, then stop pagination (only for testing)
-        $('#content').stopScrollPagination();
+        
+       }
+    }
+  });
+  
+  // code for fade in element by element
+  $.fn.fadeInWithDelay = function(){
+    var delay = 0;
+    return this.each(function(){
+      $(this).delay(delay).animate({opacity:1}, 900);
+      delay += 10;
+    });
+  };
+       $('#loading').fadeOut();
+       var i = 0;
+       $(elementsLoaded).fadeInWithDelay();
+       if ($('#content').children().size() > 1){ // if more than 100 results already loaded, then stop pagination (only for testing)
+        
        }
     }
   });
@@ -48,7 +87,7 @@ $(function(){
     var delay = 0;
     return this.each(function(){
       $(this).delay(delay).animate({opacity:1}, 200);
-      delay += 100;
+      delay += 10;
     });
   };
        
@@ -56,6 +95,8 @@ $(function(){
 </script>
 
 </div>
+<div class="loading" id="loading">Loading please wait...</div>
+    <div class="loading" id="nomoreresults">Sorry, no more results to display.</div>
 <script type="text/javascript" src="javascript/map.js"></script>
 
 
