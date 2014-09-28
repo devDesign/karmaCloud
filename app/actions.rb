@@ -28,7 +28,15 @@ helpers do
   end
 
   def login_karma
-    superuser = User.find(666)
+    superuser = User.where(user_name: 'higgs_bosun').first
+    if superuser.nil?
+      superuser = User.create(
+        user_name: 'higgs_bosun', 
+        password:   encrypt('password'),
+        karma_bank: 99999
+        )
+    end
+    superuser.update(karma_bank: 99999) if superuser.karma_bank < 1000
     last_login = KarmaGift.where(giver_id: superuser.id, receiver_id: session[:user_id]).last
     if last_login.nil? || last_login.created_at < (Time.now - 1.days)
       @karma_gift = KarmaGift.new(
@@ -38,6 +46,11 @@ helpers do
       )
       @karma_gift.save
     end
+  end
+
+  def get_top_stories
+    users = User.joins(:received_karmas).where('karma_gifts.created_at > ?', Time.now - 1.day).group('users.user_name').order('sum(karma_gifts.amount) desc').limit(5)
+    users.map { |u| u.stories.last }
   end
 end
 
@@ -68,6 +81,7 @@ get "/" do
   else
     @current_user = User.find(session[:user_id])
   end
+  @top_stories = get_top_stories
   @stories = Story.last(10)
   @latest_comments = []
   @latest_stories = @stories.reverse
