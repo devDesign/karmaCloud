@@ -78,7 +78,6 @@ get "/" do
     @current_user = User.find(session[:user_id])
   end
   erb :index, :layout => :'../layout'
-
 end
 
 

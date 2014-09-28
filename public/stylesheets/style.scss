@@ -49,14 +49,17 @@ body{
     50% 50%
     no-repeat;
 }
-.alert {
+.errors_container {
+  width: 40%;
+  margin: 0 auto;
   position: fixed;
-  top: 47px;
+  top: 10px;
   left: 0;
   right: 0;
   z-index: 7000;
-  width: 40%;
-  margin: 0 auto;
+}
+.alert {
+  margin: 10px auto;
 }
 #menu {
   position: absolute;
