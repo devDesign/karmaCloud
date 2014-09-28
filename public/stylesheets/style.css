@@ -386,5 +386,17 @@
     top: 63vh;
     left: 9vw;
     transform: scale(3); }
-
+  
 /*# sourceMappingURL=style.css.map */
+
+  .story_title {
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    text-decoration:none;
+  }
+  
+  .story_title:hover {
+    text-decoration: underline;
+    color: black;
+  }
