@@ -1,3 +1,13 @@
+#map-container {
+  width: 100%;
+  height: 100vh; }
+
+#map-loading {
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background: url("/ajax-loader.gif") 50% 50% no-repeat; }
+
 .alert {
   position: fixed;
   top: 47px;
@@ -50,21 +60,19 @@
   width: 100%; }
 
 #title {
-  width: 420px;
   position: relative;
   top: 0px;
   padding: 0px;
   padding-bottom: 5px; }
   #title h1 {
     padding: 0px;
-    margin: 0px;
-    width: 300px; }
+    margin: 0px; }
   #title .karma_cloud-title {
     color: black; }
 
 .top_stories {
   position: relative;
-  max-height: 70vh;
+  min-height: 70vh;
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff), to(#d2d2d2));
   background: -webkit-linear-gradient(top, #d2d2d2, #ffffff);
   background: -moz-linear-gradient(top, #d2d2d2, #ffffff);
@@ -100,30 +108,11 @@
   border-color: #e0e0e0;
   background-color: #f0f0f0; }
 
-.hidden {
-  display: none;
-}
-
-#map-container {
-  width: 100%;
-  height: 100vh;
-}
-
-#map-loading {
-  width: 100%;
-  height: 100%;
-  z-index: 1000;
-  background: url('/ajax-loader.gif')
-    50% 50%
-    no-repeat;
-}
-
 .map_canvas {
   width: 100%;
   height: 100vh;
   background-color: #999999;
-  margin: 0px; 
-}
+  margin: 0px; }
 
 .mission_statement {
   display: block;
@@ -137,16 +126,15 @@
 .story {
   position: relative;
   width: 100%;
-  height: 200px;
   border-style: solid;
-  border-size: 1px;
-  border-color: #b7b7b7;
-  background-color: #f7f7f7; }
+  border-size: 0px;
+  border-size-top: 0px;
+  border-color: black;
+  margin-bottom: 5px; }
 
 .story_feed {
   width: 80%;
-  margin: auto;
-  min-height: 70vh; }
+  margin: auto; }
   .story_feed .comment-link {
     color: #428bca; }
   .story_feed .comment-link:hover {
@@ -204,8 +192,7 @@
 .profile_avatar {
   position: absolute;
   top: 0px;
-  right: 0px;
-  text-align: right; }
+  right: 0px; }
 
 /* Story view page */
 .story-view-left {
@@ -229,7 +216,4 @@
 .karma_ammount-input {
   width: 25%; }
 
-.karma_count {
-  position: absolute;
-  bottom: 6px;
-  right: 0px; }
+/*# sourceMappingURL=style.css.map */

@@ -1,38 +1,18 @@
 
- <% @stories.each_with_index do |story,index| %>
-  <li style="opacity:0;-moz-opacity: 0;filter: alpha(opacity=0);">
-  <% if story.mood == 'red' %>
-  <h3 class='red_story'><%= story.title %></h3>
-  <% else %>
-  <h3 class='green_story'><%= story.title %></h3>
-  <% end %>
-  <div>
-    <p><%= story.content %></p>
-    <p>posted by <%= story.user_name %> </p>
-    <p><%= distance_of_time_in_words(story.created_at, Time.now, include_seconds: true) %> ago</p>
-    <p><a href='/story/<%= story.id %>' class='comment-link'>show <%= @latest_comments[index].count %> comments</a></p>
-  </div>
-  <% end %>
-  </li>
-
- 
-  
-  <li style="opacity:0;-moz-opacity: 0;filter: alpha(opacity=0);">
+  <div style="opacity:0;-moz-opacity: 0;filter: alpha(opacity=0);">
     <div class='story'>
-    <h3><%= @date %></h3>
+    <h3><%= @story.user_name %></h3>
   <% if @story.mood == 'red' %>
-  <h3 class='red_story'><%= @story.title %></h3>
+  <h3 class='red_story'><%= @date %></h3>
   <% else %>
-  <h3 class='green_story'><%= @story.title %></h3>
+  <h3 class='green_story'><%= @date %></h3>
   <% end %>
   <div>
     <p><%= @story.content %></p>
-    <p>posted by <%= @story.user_name %> </p>
-    <p><%= distance_of_time_in_words(@story.created_at, Time.now, include_seconds: true) %> ago</p>
+    <p><small>posted <%= distance_of_time_in_words(@story.created_at, Time.now, include_seconds: true) %> ago</small></p>
     <p><a href='/story/<%= @story.id %>' class='comment-link'>show comments</a></p>
   </div>
   </div>
-  </li>
-
-
+  </div>
+ 
 

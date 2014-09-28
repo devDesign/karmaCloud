@@ -59,14 +59,14 @@ post "/content_demo" do
   @date = @date.strftime("%x")
   @stories = Story.all
   @story = @stories.last
-  @latest_comments = []
-  @latest_stories = @stories.reverse
-  @latest_stories.each do |story|
-    @latest_comments.push(story.comments.all)
-  end
-  @latest_comments = @latest_comments.reverse
-
   erb :demo_content
+end
+post "/story_feed" do
+    @date = DateTime.now 
+  @date = @date.strftime("%x")
+  @stories = Story.all
+  @story = @stories.last
+  erb :story_feed
 end
 
 get "/" do
@@ -77,28 +77,10 @@ get "/" do
   else
     @current_user = User.find(session[:user_id])
   end
-  @top_stories = get_top_stories
-  @stories = Story.last(10)
-  @latest_comments = []
-  @latest_stories = @stories.reverse
-  @latest_stories.each do |story|
-    @latest_comments.push(story.comments.all)
-  end
-  @latest_comments = @latest_comments.reverse
   erb :index, :layout => :'../layout'
 
 end
-get "/story_feed" do
-  @stories= Story.all 
-  @latest_comments = []
-  @latest_stories = @stories.reverse
-  @latest_stories.each do |story|
-    @latest_comments.push(story.comments.all)
-  end
-  @latest_comments = @latest_comments.reverse
- 
-  erb :'story_feed'
-end
+
 
 
 post "/user_session" do

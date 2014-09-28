@@ -4,7 +4,7 @@
 // 2. two hidden input fields: browser_latitude, browser_longitude
 
 function get_browser_location(form){
-  
+  console.log("@@@@");
    if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition, showError);
    } else {
