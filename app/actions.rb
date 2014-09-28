@@ -9,8 +9,6 @@ get "/map" do
   erb :'map_test'
 end
 
-
-
 get '/stories.json' do
   @stories = Story.where("created_at > ?", Date.yesterday)
   json @stories
@@ -75,7 +73,7 @@ get "/" do
   @date = DateTime.now 
   @date = @date.strftime("%x")
   if session[:user_id] == nil
-    @current_user = User.new
+    @user = User.new
   else
     @current_user = User.find(session[:user_id])
   end
