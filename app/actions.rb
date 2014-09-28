@@ -57,12 +57,8 @@ end
 post "/content_demo" do
     @date = DateTime.now 
   @date = @date.strftime("%x")
-  if session[:user_id] == nil
-    @user = User.new
-  else
-    @current_user = User.find(session[:user_id])
-  end
-  @stories = Story.last(10)
+  @stories = Story.all
+  @story = @stories.last
   @latest_comments = []
   @latest_stories = @stories.reverse
   @latest_stories.each do |story|
