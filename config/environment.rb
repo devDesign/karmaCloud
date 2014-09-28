@@ -10,6 +10,8 @@ require 'sinatra/activerecord'
 require "sinatra/json"
 require 'action_view'
 require 'geocoder'
+require "geocoder/railtie"
+Geocoder::Railtie.insert
 require 'faker'
 require 'factory_girl'
 require 'gon-sinatra'
