@@ -24,7 +24,6 @@
   <body>
     <!-- login and create user errors -->
     <% if session[:create_user_errors] %>
-      <div class="error_container">
         <% session[:create_user_errors].each do |message| %>
           <div class="alert alert-danger alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert">
@@ -34,9 +33,7 @@
             <strong>Error: <%= message %></strong>
           </div>
         <% end %>
-        <script>$( "#create_story-link" ).trigger( "click" );</script>
         <% session[:create_user_errors] = nil %>
-      </div>
     <% end %>
     <% if session[:create_story_errors] %>
       <% session[:create_story_errors].each do |message| %>
