@@ -65,7 +65,7 @@ function showError(error) {
 function create_info_box(story) {
   
   var story_content = "<div style='width: 200px; height: 200px'>"
-                      +"<a href='/story/" + story.id + "' class='story_title'>" + story.title +"</a>"
+                      +"<a href='/story/" + story.id + "' class='storyTitle'>" + story.title +"</a>"
                       + "<p> " + story.content + " </p>"
                       +"</div>";
   

@@ -389,14 +389,14 @@
   
 /*# sourceMappingURL=style.css.map */
 
-  .story_title {
+  .storyTitle {
     font-size: 20px;
     font-weight: bold;
     color: black;
     text-decoration:none;
   }
   
-  .story_title:hover {
+  .storyTitle:hover {
     text-decoration: underline;
     color: black;
   }
