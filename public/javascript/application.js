@@ -1,11 +1,11 @@
 $(document).ready(function() {
   $( "#create_story" ).dialog({   
   autoOpen: false,   
-  width: 900,    
-  height: 450,   
+  width: 800,    
+  height: 400,   
   modal: true,   
   resizable: true,   
-  title: "Create a Story"    
+  title: "to:karmaCLoud"    
   });    
      
   // Link to open the dialog   

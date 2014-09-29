@@ -72,6 +72,7 @@ post "/last_story_feed" do
 end
 
 get "/" do
+  @comment = Comment.new
   @date = DateTime.now 
   @date = @date.strftime("%x")
   if session[:user_id] == nil
