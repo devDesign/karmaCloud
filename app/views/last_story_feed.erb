@@ -14,28 +14,45 @@
 <% @stories.each_with_index do |story,index| %>
 
   <% if story == @story %>
-  <div style="opacity:0;-moz-opacity: 0;filter: alpha(opacity=0);">
-    <div class='story'>
-    <div class="horizontal_panel">
-    <h5><%= story.user_name %></h5>
-    </div>
+  <div style="opacity:0;-moz-opacity: 0;filter: alpha(opacity=0);" >
+    <div class='story' >
     <div class="story_wrapper">
-    <div>
-    <p><%= story.user_name %> wrote: </p>
     <div class="story_content">
+    <p>to:karmaCloud,</p>
     <p><%= story.content %></p>
+      <form method="post" action="/karmagift">
+        <div class="input-group">
+          <input type="hidden" name="id" value="<%= @story.user.id %>">
+          <input type="text" name="karma_amount" class="form-control" placeholder="Karma Amount">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit">Gift!</button>
+          </span>
+        </div>
+        <h4><small>Give this user some Karma</small></h4></label>
+      </form>
+        <form method="post" action="/comment" class="comment-form">
+      <textarea name="content" maxlength="500" rows="4" cols="60" placeholder="Enter your comment here"></textarea>
+      <input type="hidden" name="story_id" value="<%= story.id %>">
+      <% if session[:user_id] %>
+      <input type="submit" class="btn btn-default" value="comment">  
+      <% else %>
+        <input type="submit" disabled class="btn btn-default" value="Sign in to post a comment">
+      <% end %>
+    </form>
     </div>
      <% if story.mood == 'red' %>
-  <small class='red_story'><%= @date %></small>
+  <small class='red_story'><%=story.user_name%> <%= @date %></small>
   <% else %>
-  <small class='green_story'><%= @date %></small>
+  <small class='green_story'><%=story.user_name%> <%= @date %></small>
   <% end %>
   <div class="story_posted"
     <p><small>posted <%= distance_of_time_in_words(story.created_at, Time.now, include_seconds: true) %> ago</small></p>
-    <p><a href='/story/<%= story.id %>' class='comment-link'>show comments</a></p>
+    <p><a href='/story/<%= story.id %>' class='comment-link'><button class="btn">viewStory</button></a></p>
   </div>
   </div>
-  </div>
+  
+
+    </div>
   </div>
   </div>
 

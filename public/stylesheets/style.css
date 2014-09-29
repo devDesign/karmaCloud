@@ -193,6 +193,30 @@
     text-align: left; }
   .story .story_content {
     font-size: 1.3em; }
+.story_in_map {
+  position: relative;
+  width: 90%;
+  margin: auto;
+  border-style: solid;
+  border-radius: 10px;
+  border-size: 0px;
+  border-size-top: 0px;
+  border-color: #525252;
+  margin-bottom: 0px; }
+  .story .story_wrapper {
+    width: 90%;
+    margin: auto;
+    padding: 10px; }
+  .story .story_user_title {
+    text-align: left; }
+  .story .red_story {
+    color: red; }
+  .story .green_story {
+    color: green; }
+  .story .story_posted {
+    text-align: left; }
+  .story .story_content {
+    font-size: 1em; }
 
 .story_feed {
   width: 80%;

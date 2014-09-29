@@ -228,6 +228,37 @@ body{
   .story_content{
     font-size: 1.3em;
   }
+.story_in_map{
+  position:relative;
+  width: 40%;
+  margin: auto;
+  border-style: solid;
+  border-radius: 10px;
+  border-size:0px;
+  border-size-top:0px;
+  border-color: darken($backgroundDark,50%);
+  margin-bottom: 50px;
+  .story_wrapper{
+    width: 90%;
+    margin: auto;
+    padding:10px;
+
+  }
+  .story_user_title{
+    text-align: left
+  }
+  .red_story{
+    color:red;
+  }
+  .green_story{
+    color:green;
+  }
+  .story_posted{
+    text-align: left;
+  }
+  .story_content{
+    font-size: 1.3em;
+  }
 
 }
 .story_feed{

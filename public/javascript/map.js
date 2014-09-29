@@ -64,11 +64,14 @@ function showError(error) {
 
 function create_info_box(story) {
   
-  var story_content = "<div style='width: 200px; height: 200px'>"
-                      +"<a href='/story/" + story.id + "' class='storyTitle'>" + story.title +"</a>"
-                      + "<p> " + story.content + " </p>"
+  var story_content = "<div style='width: 500px; height: 200px'>"
+                      +"<p>to:karmaCloud,</p>"
+                      +"<p> " + story.content + " </p>"
+                      +"<a href='/story/" + story.id + "' class='storyTitle'>view story</a>"
                       +"</div>";
+
   
+
   return new google.maps.InfoWindow({ 
     content: story_content, 
     maxWidth: 1000 
