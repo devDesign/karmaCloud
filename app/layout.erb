@@ -135,7 +135,7 @@
             <label for = "green" style="color:green;">$</label>
         </fieldset>
         <input type='hidden' name='user_id' value='<%= session[:id] %>' />
-        <input type='submit' />
+        <input type='submit' value='send' class='btn' />
       </form>
     </div>
    
@@ -191,7 +191,7 @@ $( "#login" ).dialog({
   width: 400,
   modal: true,
   resizable: false,
-  title: "Login to Karma Cloud" 
+  title: "karmaCloud login:" 
 });
 
 // Link to open the dialog
@@ -205,7 +205,7 @@ $( "#login-link" ).click(function( event ) {
   width: 400,
   modal: true,
   resizable: false,
-  title: "Welcome to Karma Cloud" 
+  title: "karmaCloud welcome:" 
 });
 
 // Link to open the dialog
