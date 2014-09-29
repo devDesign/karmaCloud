@@ -99,7 +99,19 @@ $(document).ready(function() {
 
   var s = skrollr.init();
 
+  var checkErrors = function(){
+    if ($(".login_error").length > 0){ // Check if element has been found
+      $( "#login-link" ).trigger( "click" );
+    }
+    if ($(".user_error").length > 0){ // Check if element has been found
+      $( "#create_user-link" ).trigger( "click" );
+    }
+    if ($(".story_error").length > 0){ // Check if element has been found
+      $( "#create_story-link" ).trigger( "click" );
+    }
+  };
 
+  checkErrors()
 
 });
 

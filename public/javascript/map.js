@@ -62,21 +62,15 @@ function showError(error) {
  }
 }
 
-
-function format_story_content(story){
-  content = "<div style='overflow:visible;'><h1>" +
-            story.title +
-            "</h1>" +
-            "<p style='font-size: 150%;'>"+
-            story.content +
-            "</p>"+
-            "</div>";
-  return content;
-}
-
 function create_info_box(story) {
+  
+  var story_content = "<div style='width: 200px; height: 200px'>"
+                      +"<a href='/story/" + story.id + "' class='storyTitle'>" + story.title +"</a>"
+                      + "<p> " + story.content + " </p>"
+                      +"</div>";
+  
   return new google.maps.InfoWindow({ 
-    content: format_story_content(story), 
+    content: story_content, 
     maxWidth: 1000 
   });
 }
@@ -101,13 +95,12 @@ function create_markers(map){
 
   });
   return marker_arr;
-
 }
 
 function initialize() {
   var mapOptions = {
     center: map_position,
-    zoom: 3, draggable: true, 
+    zoom: 12, draggable: true, 
     zoomControl: true, 
     scrollwheel: false, 
     disableDoubleClickZoom: false
@@ -122,7 +115,7 @@ function initialize() {
     height: 57,
     width: 57,
     textSize: 12
-  }]
+  }];
 
   var clusterOptions = {
      gridSize: 50,
@@ -136,12 +129,8 @@ function initialize() {
 }
 
 function toggle_map(){
-  console.log($('#map-container'));
   $('#map-container').children().each(function(){
     $(this).toggleClass('hidden');
-    console.log("switch");
   });
-
-
 }
 

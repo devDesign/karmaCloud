@@ -9,8 +9,6 @@ get "/map" do
   erb :'map_test'
 end
 
-
-
 get '/stories.json' do
   @stories = Story.where("created_at > ?", Date.yesterday)
   json @stories
@@ -76,12 +74,11 @@ get "/" do
   @date = DateTime.now 
   @date = @date.strftime("%x")
   if session[:user_id] == nil
-    @user = User.new
+    @current_user = User.new
   else
     @current_user = User.find(session[:user_id])
   end
   erb :index, :layout => :'../layout'
-
 end
 
 
@@ -171,8 +168,8 @@ post "/story" do
   if @story.save
     redirect "/story/#{@story.id}"
   else
-    # erb :'/story/new', layout: :layout
-    @story.errors.full_message.join("||")
+    session[:create_story_errors] = @story.errors.full_messages
+    redirect request.referer
   end
 end
 
