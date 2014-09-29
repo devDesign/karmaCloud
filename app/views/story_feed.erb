@@ -16,13 +16,29 @@
   <div style="opacity:0;-moz-opacity: 0;filter: alpha(opacity=0);" >
     <div class='story' >
     <div class="horizontal_panel">
-    <h5 class="story_user_title"><%= story.user_name %></h5>
+     <% if story.mood == 'red' %>
+  <div class='red_story'><h5 class="story_user_title"><span class="glyphicon glyphicon-cloud" ></span><%= story.title %></h5></div>
+  <% else %>
+  <div class='green_story'><h5 class="story_user_title"><span class="glyphicon glyphicon-cloud" ></span><%= story.title %></h5></div>
+  <% end %>
     </div>
     <div class="story_wrapper">
     <div>
     <p><%= story.user_name %> wrote: </p>
     <div class="story_content">
     <p><%= story.content %></p>
+      <% if @story.user.id != session[:user_id] && session[:user_id] %>
+      <form method="post" action="/karmagift">
+        <div class="input-group">
+          <input type="hidden" name="id" value="<%= @story.user.id %>">
+          <input type="text" name="karma_amount" class="form-control" placeholder="Karma Amount">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit">share!</button>
+          </span>
+        </div>
+        <h4><small>Give this user some Karma</small></h4></label>
+      </form>
+    <% end %>
     </div>
      <% if story.mood == 'red' %>
   <small class='red_story'><%= @date %></small>
@@ -34,7 +50,9 @@
     <p><a href='/story/<%= story.id %>' class='comment-link'>show comments</a></p>
   </div>
   </div>
-  </div>
+  
+
+    </div>
   </div>
   </div>
 

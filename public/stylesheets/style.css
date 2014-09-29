@@ -24,6 +24,16 @@
     right: 0px;
     top: 11px;
     font-size: 1em; }
+  .fixed_title_menu .the_login {
+    position: absolute;
+    left: 270px;
+    top: 8px;
+    font-size: 1em; }
+  .fixed_title_menu .the_signup {
+    position: absolute;
+    left: 320px;
+    top: 8px;
+    font-size: 1em; }
 
 #map-container {
   width: 100%;
@@ -168,17 +178,19 @@
   border-size: 0px;
   border-size-top: 0px;
   border-color: #525252;
-  margin-bottom: 5px; }
+  margin-bottom: 50px; }
   .story .story_wrapper {
     width: 90%;
     margin: auto;
     padding: 10px; }
+  .story .story_user_title {
+    text-align: left; }
   .story .red_story {
     color: red; }
   .story .green_story {
     color: green; }
   .story .story_posted {
-    text-align: right; }
+    text-align: left; }
   .story .story_content {
     font-size: 2em; }
 
@@ -296,47 +308,47 @@
   width: 20px;
   height: 20px;
   opacity: 22%;
-  color: #f3f3f3; }
+  color: silver; }
   .cloud_box:nth-child(1) {
-    top: 2vh;
-    left: 31vw;
-    transform: scale(16); }
+    top: 39vh;
+    left: 33vw;
+    transform: scale(19); }
   .cloud_box:nth-child(2) {
-    top: 61vh;
-    left: 21vw;
-    transform: scale(22); }
-  .cloud_box:nth-child(3) {
     top: 59vh;
-    left: 44vw;
-    transform: scale(2); }
+    left: 73vw;
+    transform: scale(3); }
+  .cloud_box:nth-child(3) {
+    top: 77vh;
+    left: 42vw;
+    transform: scale(17); }
   .cloud_box:nth-child(4) {
-    top: 10vh;
-    left: 30vw;
-    transform: scale(8); }
+    top: 2vh;
+    left: 23vw;
+    transform: scale(18); }
   .cloud_box:nth-child(5) {
-    top: 37vh;
-    left: 43vw;
-    transform: scale(13); }
-  .cloud_box:nth-child(6) {
-    top: 15vh;
+    top: 74vh;
     left: 17vw;
+    transform: scale(20); }
+  .cloud_box:nth-child(6) {
+    top: 26vh;
+    left: 15vw;
     transform: scale(5); }
   .cloud_box:nth-child(7) {
-    top: 28vh;
-    left: 34vw;
-    transform: scale(12); }
+    top: 76vh;
+    left: 9vw;
+    transform: scale(3); }
   .cloud_box:nth-child(8) {
-    top: 59vh;
-    left: 51vw;
-    transform: scale(20); }
+    top: 11vh;
+    left: 13vw;
+    transform: scale(6); }
   .cloud_box:nth-child(9) {
-    top: 31vh;
-    left: 77vw;
-    transform: scale(21); }
-  .cloud_box:nth-child(10) {
-    top: 75vh;
-    left: 25vw;
+    top: 16vh;
+    left: 21vw;
     transform: scale(7); }
+  .cloud_box:nth-child(10) {
+    top: 1vh;
+    left: 36vw;
+    transform: scale(11); }
 
 .cloud_box_last {
   transform-style: preserve-3d;
@@ -345,46 +357,46 @@
   width: 20px;
   height: 20px;
   opacity: 22%;
-  color: #f3f3f3; }
+  color: silver; }
   .cloud_box_last:nth-child(1) {
-    top: 57vh;
-    left: 80vw;
+    top: 71vh;
+    left: 11vw;
     transform: scale(22); }
   .cloud_box_last:nth-child(2) {
-    top: 34vh;
-    left: 65vw;
-    transform: scale(3); }
+    top: 47vh;
+    left: 55vw;
+    transform: scale(7); }
   .cloud_box_last:nth-child(3) {
-    top: 2vh;
-    left: 37vw;
+    top: 67vh;
+    left: 23vw;
     transform: scale(13); }
   .cloud_box_last:nth-child(4) {
-    top: 27vh;
-    left: 29vw;
-    transform: scale(15); }
+    top: 55vh;
+    left: 48vw;
+    transform: scale(20); }
   .cloud_box_last:nth-child(5) {
-    top: 45vh;
-    left: 69vw;
-    transform: scale(7); }
+    top: 60vh;
+    left: 54vw;
+    transform: scale(5); }
   .cloud_box_last:nth-child(6) {
-    top: 74vh;
-    left: 28vw;
-    transform: scale(3); }
+    top: 56vh;
+    left: 21vw;
+    transform: scale(1); }
   .cloud_box_last:nth-child(7) {
-    top: 33vh;
-    left: 52vw;
-    transform: scale(19); }
+    top: 16vh;
+    left: 36vw;
+    transform: scale(9); }
   .cloud_box_last:nth-child(8) {
-    top: 73vh;
-    left: 39vw;
-    transform: scale(8); }
+    top: 38vh;
+    left: 21vw;
+    transform: scale(22); }
   .cloud_box_last:nth-child(9) {
-    top: 63vh;
-    left: 62vw;
-    transform: scale(11); }
+    top: 80vh;
+    left: 17vw;
+    transform: scale(19); }
   .cloud_box_last:nth-child(10) {
-    top: 29vh;
-    left: 39vw;
-    transform: scale(21); }
+    top: 14vh;
+    left: 50vw;
+    transform: scale(13); }
 
 /*# sourceMappingURL=style.css.map */

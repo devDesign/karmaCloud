@@ -34,6 +34,16 @@ body{
   right:0px;
   top:11px;
   font-size: 1em;}
+    .the_login{
+  position: absolute;
+  left:270px;
+  top:8px;
+  font-size: 1em;}
+    .the_signup{
+  position: absolute;
+  left:320px;
+  top:8px;
+  font-size: 1em;}
 }
 
 #map-container {
@@ -193,12 +203,15 @@ body{
   border-size:0px;
   border-size-top:0px;
   border-color: darken($backgroundDark,50%);
-  margin-bottom: 5px;
+  margin-bottom: 50px;
   .story_wrapper{
     width: 90%;
     margin: auto;
     padding:10px;
 
+  }
+  .story_user_title{
+    text-align: left
   }
   .red_story{
     color:red;
@@ -207,7 +220,7 @@ body{
     color:green;
   }
   .story_posted{
-    text-align: right;
+    text-align: left;
   }
   .story_content{
     font-size: 2em;
@@ -362,7 +375,7 @@ body{
   position: absolute;
   width: 20px; height: 20px;
   opacity:22%;
-  color:$white;
+  color:darken($white,20%);
 
   @for $i from 0 to 10 {
     &:nth-child(#{$i + 1}) {
@@ -378,7 +391,7 @@ body{
   position: absolute;
   width: 20px; height: 20px;
   opacity:22%;
-  color:$white;
+  color:darken($white,20%);
 
   @for $i from 0 to 10 {
     &:nth-child(#{$i + 1}) {
