@@ -11,7 +11,8 @@
     <p class="lead"><%= @story.content %></p>
     <small>
       posted by <a href='/user/<%= @story.user_name %>'><%= @story.user_name %></a> <%= distance_of_time_in_words(@story.created_at, Time.now, include_seconds: true) %> ago
-    </small>
+    </small><br /><br />  
+        
     <% if @story.user.id != session[:user_id] && session[:user_id] %>
       <form method="post" action="/karmagift">
         <div class="input-group">
@@ -23,6 +24,17 @@
         </div>
         <h4><small>Give this user some Karma</small></h4></label>
       </form>
+    <% end %><% @story.comments.order(created_at: :asc).each do |comment| %>
+      <div class="comment">
+        <div>
+           <p><%= comment.content %></p>
+        <p class="small"><a href='/user/<%= comment.user.user_name %>'><%= comment.user.user_name %></a>- 
+            <span class="smaller"><%= distance_of_time_in_words(@story.created_at, Time.now, include_seconds: true) %> ago</span>
+          </p>
+     
+        </div>
+      </div>
+      <hr>
     <% end %>
   </div>
   <div class="col-md-6 story-view-right">
@@ -50,16 +62,6 @@
     </form>
     <hr>
 
-    <% @story.comments.order(created_at: :desc).each do |comment| %>
-      <div class="comment">
-        <div>
-        <p class="small"><a href='/user/<%= comment.user.user_name %>'><%= comment.user.user_name %></a>- 
-            <span class="smaller"><%= distance_of_time_in_words(@story.created_at, Time.now, include_seconds: true) %> ago</span>
-          </p>
-        <p><%= comment.content %></p>
-        </div>
-      </div>
-      <hr>
-    <% end %>
+
   </div>
 </div>
