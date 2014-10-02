@@ -45,3 +45,5 @@ end
 100.times do
   user = FactoryGirl.create :user_with_story
 end
+
+  
