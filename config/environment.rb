@@ -16,7 +16,7 @@ require 'faker'
 require 'factory_girl'
 require 'gon-sinatra'
 require 'pg'
-require 'pry'
+require 'pry' if development?
 require 'digest/sha1'
 require 'random-location'
 

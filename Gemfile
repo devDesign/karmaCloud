@@ -4,7 +4,6 @@ source "https://rubygems.org"
 gem 'rake'
 gem 'activesupport'
 gem 'slim'
-gem 'pg'
 gem 'sass'
 gem 'sinatra'
 gem 'sinatra-contrib'
@@ -23,4 +22,8 @@ group :development, :test do
   gem 'pry'
   gem 'shotgun'
   gem 'sqlite3'
+end
+
+group :production do
+  gem 'pg'
 end
