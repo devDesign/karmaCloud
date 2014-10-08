@@ -24,6 +24,7 @@ FactoryGirl.define do
     sequence(:latitude)   {Faker::Address.latitude}
     sequence(:longitude)  {Faker::Address.longitude}
     mood         {["green","red"].sample}
+    sequence(:user_name)    {Faker::Name.name}
     user
 
     factory :story_with_comments do 
